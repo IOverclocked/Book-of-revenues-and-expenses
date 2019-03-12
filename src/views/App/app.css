@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700|Sniglet:400,800&subset=latin-ext");
+
+body {
+    /* font-family: "Sniglet", cursive; */
+    font-family: "Raleway", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::before,
+*::after {
+    display: block;
+    content: "";
+    margin: 0;
+    padding: 0;
+}
