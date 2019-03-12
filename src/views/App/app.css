@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700|Sniglet:400,800&subset=latin-ext");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700|Sniglet:400,800|Srisakdi:400,700&subset=latin-ext");
 
 body {
     /* font-family: "Sniglet", cursive; */
+    /* font-family: 'Srisakdi', cursive; */
     font-family: "Raleway", sans-serif;
 }
 

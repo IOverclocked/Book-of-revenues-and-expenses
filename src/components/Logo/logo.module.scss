@@ -1,0 +1,53 @@
+.wrapper {
+    width: 25vw;
+    padding: 2em;
+}
+
+.book {
+    line-height: 0.3em;
+    font-size: 4em;
+    font-weight: 700;
+}
+
+.line {
+    display: block;
+    border: 1px solid #000;
+
+    &:first-child {
+        margin: 0 0.2em 0 0;
+        width: 160px;
+    }
+
+    &:last-child {
+        margin: 0 0 0 0.4em;
+        width: 230px;
+    }
+}
+
+.of {
+    display: flex;
+    align-items: center;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+        sans-serif;
+    font-size: 2em;
+    font-style: italic;
+}
+
+.bottomWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    line-height: 0;
+}
+
+.expenses,
+.revenues {
+    font-size: 1.5em;
+}
+
+.and {
+    font-family: "Srisakdi", cursive;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 2em;
+}
