@@ -1,4 +1,4 @@
-@import "../../config/config";
+@import "../../styles/imports.scss";
 
 .wrapper {
     width: 100%;
@@ -7,7 +7,7 @@
 }
 
 .book {
-    font-family: $primatyHeader;
+    font-family: $primatyHeaderFont;
     font-size: 55px;
     font-weight: 400;
     height: 50px;
@@ -26,7 +26,7 @@
     .of {
         position: absolute;
         left: 40px;
-        font-family: $middleLogoFont;
+        font-family: $primaryHeaderSecondFont;
         font-size: 47px;
         font-style: italic;
     }
@@ -36,6 +36,6 @@
         bottom: 5px;
         display: flex;
         font-size: 21px;
-        font-family: $bottomLogoFont;
+        font-family: $primaryHeaderThirdFont;
     }
 }
