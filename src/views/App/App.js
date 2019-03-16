@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Counter from '../Counter/Counter';
 import Logo from '../../components/Logo/Logo';
-import './app.css';
+import Navigation from '../../components/Navigation/Navigation';
+import style from './App.module.scss';
 
 class App extends Component {
     state = {
@@ -27,10 +28,10 @@ class App extends Component {
     render() {
         return (
             <>
-                <Logo />
-                <div className="App">
-                    <Counter counterList={this.state.counterList} />
+                <div className={style.header}>
+                    <Logo />
                 </div>
+                <Counter counterList={this.state.counterList} />
             </>
         );
     }

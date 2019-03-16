@@ -1,0 +1,11 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    list-style-type: none;
+    height: 27vh;
+
+    li {
+        padding: 1.5em 1.2em;
+        font-size: 1.5em;
+    }
+}

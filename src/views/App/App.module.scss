@@ -1,0 +1,28 @@
+@import "../../config/config";
+
+body {
+    font-family: $primaryFont;
+}
+
+html {
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::before,
+*::after {
+    content: "";
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+}

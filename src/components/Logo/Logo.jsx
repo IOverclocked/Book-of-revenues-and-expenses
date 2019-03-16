@@ -1,19 +1,18 @@
 import React from 'react';
-import style from './logo.module.scss';
+import style from './Logo.module.scss';
+import Money from '@material-ui/icons/AttachMoney';
 
 const Logo = () => (
-
     <div className={style.wrapper}>
         <p className={style.book}>Book</p>
-        <p className={style.of}>
-            <span className={style.line}></span>
-            of
-            <span className={style.line}></span>
-        </p>
-        <div className={style.bottomWrapper}>
-            <p className={style.revenues}>revenues</p>
-            <p className={style.and}>$&nbsp;</p>
-            <p className={style.expenses}>expenses</p>
+        <div className={style.middleWrapper}>
+            <Money className={style.icon} />
+            <p className={style.of}>of</p>
+            <div className={style.internalWrapper}>
+                <p className={style.revenues}>revenues</p>
+                <p className={style.and}>&</p>
+                <p className={style.expenses}>expenses</p>
+            </div>
         </div>
     </div>
 
