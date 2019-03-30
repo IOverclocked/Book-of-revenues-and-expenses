@@ -1,0 +1,28 @@
+@import "../../styles/imports.scss";
+
+.wrapper {
+    @include flex(center, center);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 65px;
+    height: 65px;
+    color: $whiteColor;
+    background: $primaryColor;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    box-shadow: 2px 2px 2px 0 $littleShadow;
+    transition: 150ms ease-in-out;
+    cursor: pointer;
+
+    .icon {
+        font-size: 40px;
+    }
+
+    &:hover,
+    &:active {
+        width: 75px;
+        height: 75px;
+    }
+}
