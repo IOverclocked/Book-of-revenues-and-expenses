@@ -1,0 +1,48 @@
+@import "../../styles/imports.scss";
+
+.wrapper {
+    cursor: pointer;
+    margin: 20px 20px;
+    width: 35px;
+    height: 25px;
+}
+
+.line {
+    transition: 150ms ease-in-out;
+    position: absolute;
+    width: 35px;
+    height: 1px;
+    border: 2px solid $primaryColor;
+}
+
+.base {
+    @extend .line;
+
+    &:nth-of-type(1) {
+        top: 20px;
+    }
+    &:nth-of-type(2) {
+        top: 30px;
+    }
+    &:nth-of-type(3) {
+        top: 40px;
+    }
+}
+
+.focus {
+    @extend .line;
+
+    &:nth-of-type(1) {
+        top: 30px;
+        transform: rotate(45deg);
+    }
+    &:nth-of-type(2) {
+        top: 30px;
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+    &:nth-of-type(3) {
+        top: 30px;
+        transform: rotate(-45deg);
+    }
+}

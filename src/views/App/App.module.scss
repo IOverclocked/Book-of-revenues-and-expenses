@@ -14,14 +14,6 @@ html {
     padding: 0;
 }
 
-*::before,
-*::after {
-    content: "";
-    display: block;
-    margin: 0;
-    padding: 0;
-}
-
 .header {
     width: 100%;
     display: flex;

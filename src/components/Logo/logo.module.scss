@@ -1,41 +1,103 @@
 @import "../../styles/imports.scss";
 
+//abstract class
 .wrapper {
-    width: 100%;
-    padding: 1em 0 0 1em;
+    position: relative;
     color: $primaryColor;
 }
-
 .book {
-    font-family: $primatyHeaderFont;
-    font-size: 55px;
     font-weight: 400;
     height: 50px;
+    font-family: $primatyHeaderFont;
 }
-
 .middleWrapper {
     position: relative;
+}
+.icon {
+    position: absolute;
+}
+.of {
+    position: absolute;
+    font-style: italic;
+    font-family: $primaryHeaderSecondFont;
+}
+.internalWrapper {
+    position: absolute;
+    font-family: $primaryHeaderThirdFont;
+}
+
+//by start view
+.wrapper__start {
+    @extend .wrapper;
+    padding: 1em 0 0 1em;
+}
+
+.book__start {
+    @extend .book;
+    font-size: 55px;
+}
+
+.middleWrapper__start {
+    @extend .middleWrapper;
     height: 70px;
-    .icon {
-        position: absolute;
+    .icon__start {
+        @extend .icon;
         transform: rotate(-15deg);
         top: -7.5px;
         left: -15px;
         font-size: 5em;
     }
-    .of {
-        position: absolute;
+    .of__start {
+        @extend .of;
         left: 40px;
-        font-family: $primaryHeaderSecondFont;
         font-size: 47px;
-        font-style: italic;
     }
-    .internalWrapper {
-        position: absolute;
+    .internalWrapper__start {
+        @extend .internalWrapper;
         left: 45px;
         bottom: 5px;
         display: flex;
         font-size: 21px;
-        font-family: $primaryHeaderThirdFont;
+    }
+}
+
+//by home view
+.wrapper__home {
+    @extend .wrapper;
+    padding: 1em 0 0 1em;
+
+    .book__home {
+        @extend .book;
+        font-size: 42px;
+    }
+    .iconRight__home,
+    .iconLeft__home {
+        @extend .icon;
+    }
+    .iconLeft__home {
+        font-size: 35px;
+        top: 0px;
+        left: 40px;
+        transform: rotate(-20deg);
+    }
+    .iconRight__home {
+        font-size: 30px;
+        top: 5px;
+        left: 55px;
+        transform: rotate(20deg);
+    }
+    .of__home {
+        @extend .of;
+        top: 25px;
+        left: 125px;
+        font-size: 17px;
+    }
+    .internalWrapper__home {
+        @extend .internalWrapper;
+        position: absolute;
+        display: flex;
+        top: 37px;
+        left: 125px;
+        font-size: 15px;
     }
 }

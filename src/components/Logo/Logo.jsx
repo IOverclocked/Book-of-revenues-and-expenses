@@ -2,19 +2,34 @@ import React from 'react';
 import style from './Logo.module.scss';
 import Money from '@material-ui/icons/AttachMoney';
 
-const Logo = () => (
-    <div className={style.wrapper}>
-        <p className={style.book}>Book</p>
-        <div className={style.middleWrapper}>
-            <Money className={style.icon} />
-            <p className={style.of}>of</p>
-            <div className={style.internalWrapper}>
-                <p className={style.revenues}>revenues</p>
-                <p className={style.and}>&</p>
-                <p className={style.expenses}>expenses</p>
+const Logo = ({ isStartView }) => (
+    <> {isStartView
+        ?
+        <div className={style.wrapper__start} >
+            <p className={style.book__start}>Book</p>
+            <div className={style.middleWrapper__start}>
+                <Money className={style.icon__start} />
+                <p className={style.of__start}>of</p>
+                <div className={style.internalWrapper__start}>
+                    <p className={style.revenues__start}>revenues</p>
+                    <p className={style.and__start}>&</p>
+                    <p className={style.expenses__start}>expenses</p>
+                </div>
             </div>
         </div>
-    </div>
+        :
+        <div className={style.wrapper__home} >
+            <Money className={style.iconLeft__home} />
+            <Money className={style.iconRight__home} />
+            <p className={style.book__home}>Book</p>
+            <p className={style.of__home}>of</p>
+            <div className={style.internalWrapper__home}>
+                <p className={style.revenues__home}>revenues</p>
+                <p className={style.and__home}>&</p>
+                <p className={style.expenses__home}>expenses</p>
+            </div>
+        </div>
+    } </>
 
 );
 

@@ -1,38 +1,32 @@
 import React, { Component } from 'react';
-import Start from '../Start/Start';
-import style from './App.module.scss';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import StartView from '../StartView/StartView';
+import HomeView from '../HomeView/HomeView';
+import './App.module.scss';
 
 class App extends Component {
     state = {
         startView: true
-        // counterList: [
-        //     {
-        //         date: '01-02-2012',
-        //         description: 'Desc',
-        //         cash: 159.99,
-        //     },
-        //     {
-        //         date: '01-02-2012',
-        //         description: 'Desc',
-        //         cash: 159.99,
-        //     },
-        //     {
-        //         date: '01-02-2012',
-        //         description: 'Desc',
-        //         cash: 159.99,
-        //     },
-        // ]
+    }
+
+    goToHomeView = () => {
+        this.setState({ startView: false });
     }
 
     render() {
         return (
-            <>
-                {
-                    this.state.startView
-                        ? <Start />
-                        : null
-                }
-            </>
+            <BrowserRouter>
+                <>
+                    {
+                        this.state.startView
+                            ? <Route path="/" render={(props) => <StartView {...props} goToHomeView={this.goToHomeView} />} />
+                            : <Route path="/" component={HomeView} />
+                    }
+                    <Switch>
+
+                    </Switch>
+                </>
+            </BrowserRouter>
         );
     }
 }
