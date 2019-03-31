@@ -1,0 +1,53 @@
+@import "../../styles/imports.scss";
+
+.wrapper {
+    @include flex(center, space-between);
+    margin: 0.5em 0 0 0;
+    color: $primaryFontColor;
+    font-size: 1em;
+    width: 100%;
+    height: 65px;
+    box-shadow: 0 3px 2px 1px $littleShadow;
+}
+
+.wrapper__expenses {
+    @extend .wrapper;
+    background: $expenses65AlfaColor;
+}
+
+.wrapper__revenues {
+    @extend .wrapper;
+    background: $revenues65AlfaColor;
+}
+
+.section__desc {
+    height: 100%;
+    max-width: 75vw;
+    flex-grow: 4;
+    overflow: hidden;
+
+    .desc__header {
+        @include flex(center, space-between);
+
+        .header__date {
+            padding: 0.5em;
+            flex-grow: 1;
+        }
+        .header__title {
+            padding: 0.5em;
+            flex-grow: 4;
+            text-align: center;
+        }
+    }
+
+    .desc__desc {
+        padding: 0 0.5em;
+    }
+}
+
+.section__cash {
+    @include flex(center, center);
+    height: 100%;
+    flex-grow: 1;
+    font-weight: 800;
+}
