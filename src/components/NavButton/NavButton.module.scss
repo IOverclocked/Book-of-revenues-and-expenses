@@ -18,8 +18,20 @@
 
 .wrapper__revenues {
     border-color: $revenues65AlfaColor;
+
+    &:hover,
+    &:active {
+        background: $revenues65AlfaColor;
+        color: $whiteColor;
+    }
 }
 
 .wrapper__expenses {
     border-color: $expenses65AlfaColor;
+
+    &:hover,
+    &:active {
+        background: $expenses65AlfaColor;
+        color: $whiteColor;
+    }
 }
