@@ -2,6 +2,7 @@
 
 .wrapper {
     @include flex(center, space-between);
+    position: relative;
     margin: 0.5em 0 0 0;
     color: $primaryFontColor;
     font-size: 1em;
@@ -13,13 +14,23 @@
 }
 
 .wrapper__expenses {
-    @extend .wrapper;
     background: $expenses65AlfaColor;
 }
 
 .wrapper__revenues {
-    @extend .wrapper;
     background: $revenues65AlfaColor;
+}
+
+.section__nav {
+    @include flex(center, flex-start);
+    position: absolute;
+    visibility: hidden;
+    top: -2em;
+    // left: -10px; //show
+    left: -1000px; //hide
+    // right: 10px; //show
+    right: none; //hide
+    transition: 150ms ease-in-out;
 }
 
 .section__desc {
