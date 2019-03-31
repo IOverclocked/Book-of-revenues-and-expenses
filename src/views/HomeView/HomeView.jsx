@@ -14,7 +14,7 @@ export class HomeView extends Component {
                     <Logo />
                     <Hamburger />
                 </header>
-                <section class={Style.main}>
+                <section className={Style.main}>
                     <StateView />
                 </section>
                 <ListItemsView />

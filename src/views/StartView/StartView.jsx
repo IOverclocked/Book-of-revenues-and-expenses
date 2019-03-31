@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './StartView.module.scss';
+import PropTypes from 'prop-types';
 import Logo from '../../components/Logo/Logo';
 
 const StartView = ({ goToHomeView }) => (
@@ -10,5 +11,9 @@ const StartView = ({ goToHomeView }) => (
         </section>
     </div >
 )
+
+StartView.propTypes = {
+    goToHomeView: PropTypes.func.isRequired
+}
 
 export default StartView;

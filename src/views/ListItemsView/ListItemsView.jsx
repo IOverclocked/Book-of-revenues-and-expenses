@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import Style from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
 export class ListItemsView extends Component {
     state = {
         list: [{
+            id: uuid.v1(),
             title: 'title',
             date: '01-01-2019',
             desc: 'descasdddddddddddddddddddddasdddddddddasdddd',
@@ -12,6 +14,7 @@ export class ListItemsView extends Component {
             revenues: false,
             expenses: true
         }, {
+            id: uuid.v1(),
             title: 'title',
             date: '01-01-2019',
             desc: 'desc',
@@ -20,12 +23,13 @@ export class ListItemsView extends Component {
             expenses: false
         }]
     }
+
     render() {
         const { list } = this.state;
         return (
             <ul className={Style.wrapper}>
                 {
-                    list.map(item => <ListItem item={item} />)
+                    list.map(item => <ListItem key={item.id} item={item} />)
                 }
             </ul>
         )
