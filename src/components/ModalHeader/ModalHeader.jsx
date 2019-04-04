@@ -1,9 +1,11 @@
 import React from 'react';
-import styles form './ModalHeader.modules.scss';
+import styles from './ModalHeader.module.scss';
+import Close from '@material-ui/icons/Close';
 
 const ModalHeader = ({ title }) => (
-    <header>
-
+    <header className={styles.wrapper}>
+        <span className={styles.title}>{title}</span>
+        <Close className={styles.icon} />
     </header>
 )
 
