@@ -30,10 +30,10 @@ export class Modal extends Component {
 
                     </header>
                     <form autoComplete="off" className={styles.form}>
-                        <Input tag="input" type="text" name="title" value={title} placeholder="Title" onChange={this.handleChange} />
-                        <Input tag="input" type="date" name="date" value={date} placeholder="Date" onChange={this.handleChange} />
-                        <Input tag="input" type="text" name="cash" value={cash} placeholder="Cash" onChange={this.handleChange} />
-                        <Input tag="textarea" name="desc" value={desc} placeholder="Description" onChange={this.handleChange} />
+                        <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} />
+                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
+                        <Input tag="input" type="text" name="cash" value={cash} onChange={this.handleChange} />
+                        <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} />
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
                     </form>
