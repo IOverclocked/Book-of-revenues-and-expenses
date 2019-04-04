@@ -1,0 +1,54 @@
+@import "../../styles/imports.scss";
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: $whiteColor;
+    font-size: 1.2em;
+}
+
+.label {
+    position: absolute;
+    top: 30px;
+    transition: 150ms ease-in-out;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: 5px;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.input {
+    position: absolute;
+    background: transparent;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-bottom: 2px solid $primaryColor;
+    margin: 1em 0 0 0;
+    padding: 0.2em;
+    font-size: 0.8em;
+    outline: none;
+    color: $primaryFontColor;
+    resize: none;
+    transition: 50ms ease-in-out;
+
+    &:focus,
+    &:active {
+        border-color: $primaryDarkColor;
+        box-shadow: -1px 1px 1px 0 $primaryDarkColor;
+    }
+
+    &[type="date"]:placeholder {
+        display: none;
+        &:focus {
+            color: $primaryFontColor;
+        }
+    }
+}
