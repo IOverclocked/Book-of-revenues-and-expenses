@@ -42,6 +42,6 @@
     &:focus,
     &:active {
         border-color: $primaryDarkColor;
-        box-shadow: -1px 1px 1px 0 $primaryDarkColor;
+        box-shadow: 0 1px 1px -1px $primaryDarkColor;
     }
 }
