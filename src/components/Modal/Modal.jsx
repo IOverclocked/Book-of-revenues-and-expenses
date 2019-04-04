@@ -19,15 +19,15 @@ export class Modal extends Component {
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
         console.log(this.state);
-
     }
 
     render() {
         const { title, date, cash, desc } = this.state;
+        const { headerModal } = this.props;
         return (
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
-                    <ModalHeader title="Add" />
+                    <ModalHeader title={headerModal} />
                     <form autoComplete="off" className={styles.form}>
                         <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} />
                         <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
@@ -37,7 +37,7 @@ export class Modal extends Component {
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
                     </form>
                 </section>
-            </div >
+            </ div >
         )
     }
 }

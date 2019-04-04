@@ -1,5 +1,9 @@
 @import "../../styles/imports.scss";
 
+.modal__wrapper__hidden {
+    visibility: hidden;
+}
+
 .modal__wrapper {
     position: fixed;
     top: 0;

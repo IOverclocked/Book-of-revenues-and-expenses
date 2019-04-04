@@ -8,7 +8,24 @@ import ListItemsView from '../ListItemsView/ListItemsView';
 import Modal from '../../components/Modal/Modal';
 
 export class HomeView extends Component {
+    state = {
+        headerModal: '',
+        modalToggle: false
+    }
+    handleShowModal = (type) => {
+        switch (type) {
+            case 'ADD':
+                this.setState({ headerModal: 'Add' });
+                break;
+
+            default:
+                break;
+        }
+
+        this.setState({ modalToggle: !this.state.modalToggle });
+    }
     render() {
+        const { headerModal, modalToggle } = this.state;
         return (
             <>
                 <header className={Style.header}>
@@ -19,9 +36,8 @@ export class HomeView extends Component {
                     <StateView />
                 </section>
                 <ListItemsView />
-
-                <Modal />
-                <AddButton />
+                {modalToggle && <Modal headerModal={headerModal} />}
+                <AddButton onClick={() => this.handleShowModal('ADD')} />
             </>
         )
     }
