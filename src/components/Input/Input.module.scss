@@ -44,11 +44,4 @@
         border-color: $primaryDarkColor;
         box-shadow: -1px 1px 1px 0 $primaryDarkColor;
     }
-
-    &[type="date"]:placeholder {
-        display: none;
-        &:focus {
-            color: $primaryFontColor;
-        }
-    }
 }
