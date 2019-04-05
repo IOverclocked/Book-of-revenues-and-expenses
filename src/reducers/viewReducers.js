@@ -4,6 +4,7 @@ const initState = {
         open: true,
     },
     modal: {
+        title: '',
         toggle: false
     }
 }
@@ -18,10 +19,12 @@ const startApp = (state) => {
 }
 
 const toggleModal = (state, action) => {
+    debugger
     return {
         ...state,
         modal: {
-            toggle: action.control
+            toggle: action.toggle,
+            title: action.title
         }
     }
 }

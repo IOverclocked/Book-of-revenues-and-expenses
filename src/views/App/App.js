@@ -12,15 +12,15 @@ class App extends Component {
         startViewIsOpen: PropTypes.bool.isRequired,
         startApp: PropTypes.func.isRequired
     }
-    
+
     render() {
-        const { startViewIsOpen, startApp } = this.props;
+        const { startViewIsOpen, handleStartApp } = this.props;
         return (
             <BrowserRouter>
                 <>
                     {
                         startViewIsOpen
-                            ? <Route path="/" render={(props) => <StartView {...props} startApp={startApp} />} />
+                            ? <Route path="/" render={(props) => <StartView {...props} handleStartApp={handleStartApp} />} />
                             : <Route path="/" component={HomeView} />
                     }
                     <Switch>
@@ -33,7 +33,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { viewReducers: view } = state;
+    const { view } = state;
     return {
         startViewIsOpen: view.start.open
     }
@@ -41,7 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        startApp: () => { 
+        handleStartApp: () => { 
             dispatch(startApp()) 
         }
     };

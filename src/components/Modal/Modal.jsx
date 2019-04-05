@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { toggleModal } from '../../actions/actions';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Input from '../Input/Input';
@@ -17,17 +19,16 @@ export class Modal extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-        console.log(this.state);
+        this.setState({ [e.target.name]: e.target.value });;
     }
 
     render() {
         const { title, date, cash, desc } = this.state;
-        const { headerModal } = this.props;
+        const { headerTitle, handleToggleModal } = this.props;
         return (
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
-                    <ModalHeader title={headerModal} />
+                    <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal}/>
                     <form autoComplete="off" className={styles.form}>
                         <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} />
                         <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
@@ -42,4 +43,19 @@ export class Modal extends Component {
     }
 }
 
-export default Modal;
+const mapStateToProps = (state) => {
+    const { view } = state;
+    return {
+        headerTitle: view.modal.title
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleToggleModal: (toggle = false, title = '') => {
+            dispatch(toggleModal(toggle, title))
+        }
+    }
+}
+
+export default (connect(mapStateToProps, mapDispatchToProps))(Modal);
