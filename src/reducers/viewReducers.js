@@ -5,7 +5,8 @@ const initState = {
     },
     modal: {
         title: '',
-        toggle: false
+        toggle: false,
+        btns: [{ title: ''}]
     }
 }
 
@@ -23,7 +24,8 @@ const toggleModal = (state, action) => {
         ...state,
         modal: {
             toggle: action.toggle,
-            title: action.title
+            title: action.title,
+            btns: action.btns
         }
     }
 }

@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavButton.module.scss';
 
-const NavButton = ({ type, desc, ...props }) => (
+const NavButton = ({ type, title, ...props }) => (
     <button className={
-        type === 'expenses' ?
-            `${styles.wrapper} ${styles.wrapper__expenses}` :
-            `${styles.wrapper} ${styles.wrapper__revenues}`
+        type === 'expenses' ? styles.wrapper__expenses :
+            type === 'revenues' ? styles.wrapper__revenues :
+                styles.confirmButton
     } {...props}>
-        {desc}
+        {title}
     </button>
 )
 
 NavButton.propTypes = {
-    type: PropTypes.string.isRequired,
-    desc: PropTypes.string.isRequired
+    type: PropTypes.string,
+    title: PropTypes.string.isRequired
 }
 
 

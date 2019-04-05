@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Input from '../Input/Input';
 import ModalHeader from '../ModalHeader/ModalHeader';
+import NavButton from '../NavButton/NavButton';
 
 export class Modal extends Component {
     static propTypes = {
         headerTitle: PropTypes.string.isRequired,
+        btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
         handleToggleModal: PropTypes.func.isRequired,
     }
 
@@ -25,11 +27,11 @@ export class Modal extends Component {
 
     render() {
         const { title, date, cash, desc } = this.state;
-        const { headerTitle, handleToggleModal } = this.props;
+        const { headerTitle, btns, handleToggleModal } = this.props;
         return (
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
-                    <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal}/>
+                    <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
                     <form autoComplete="off" className={styles.form}>
                         <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} />
                         <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
@@ -38,6 +40,9 @@ export class Modal extends Component {
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
                     </form>
+                    <section className={styles.btns}>
+                        {btns.map(btn => <NavButton key={btn.title} title={btn.title} />)}
+                    </section>
                 </section>
             </ div >
         )
@@ -45,16 +50,19 @@ export class Modal extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
+
     const { view } = state;
     return {
-        headerTitle: view.modal.title
+        headerTitle: view.modal.title,
+        btns: view.modal.btns
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleToggleModal: (toggle = false, title = '') => {
-            dispatch(toggleModal(toggle, title))
+        handleToggleModal: (toggle = false, title = '', btns = []) => {
+            dispatch(toggleModal(toggle, title, btns))
         }
     }
 }

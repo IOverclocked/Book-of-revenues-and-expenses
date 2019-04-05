@@ -10,7 +10,7 @@ import './App.module.scss';
 class App extends Component {
     static propTypes = {
         startViewIsOpen: PropTypes.bool.isRequired,
-        startApp: PropTypes.func.isRequired
+        handleStartApp: PropTypes.func.isRequired
     }
 
     render() {

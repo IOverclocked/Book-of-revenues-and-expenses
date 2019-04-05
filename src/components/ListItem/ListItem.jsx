@@ -10,19 +10,19 @@ const ListItem = ({ item, ...props }) => (
         <section className={styles.section__nav}>
             <NavButton
                 type={item.expenses ? 'expenses' : 'revenues'}
-                desc='Edit'
+                title='Edit'
             />
             <NavButton
                 type={item.expenses ? 'expenses' : 'revenues'}
-                desc='Delete'
+                title='Delete'
             />
             <NavButton
                 type={item.expenses ? 'expenses' : 'revenues'}
-                desc='More'
+                title='More'
             />
             <NavButton
                 type={item.expenses ? 'expenses' : 'revenues'}
-                desc='Close'
+                title='Close'
             />
         </section>
         <section className={styles.section__desc}>
