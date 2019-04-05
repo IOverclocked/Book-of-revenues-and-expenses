@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { startApp } from '../../actions/actions';
 import StartView from '../StartView/StartView';
 import HomeView from '../HomeView/HomeView';
 import './App.module.scss';
 
 class App extends Component {
-    state = {
-        startView: true
-    }
-
-    goToHomeView = () => {
-        this.setState({ startView: false });
-    }
-
     render() {
+        const { startViewIsOpen, startApp } = this.props;
         return (
             <BrowserRouter>
                 <>
                     {
-                        this.state.startView
-                            ? <Route path="/" render={(props) => <StartView {...props} goToHomeView={this.goToHomeView} />} />
+                        startViewIsOpen
+                            ? <Route path="/" render={(props) => <StartView {...props} startApp={startApp} />} />
                             : <Route path="/" component={HomeView} />
                     }
                     <Switch>
-
+                        {/* todo */}
                     </Switch>
                 </>
             </BrowserRouter>
@@ -31,4 +26,19 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    const { viewReducers: view } = state;
+    return {
+        startViewIsOpen: view.start.open
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startApp: () => { 
+            dispatch(startApp()) 
+        }
+    };
+}
+
+export default (connect(mapStateToProps, mapDispatchToProps))(App);
