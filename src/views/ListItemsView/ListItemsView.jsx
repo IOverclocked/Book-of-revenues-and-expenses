@@ -40,10 +40,10 @@ export class ListItemsView extends Component {
         opacity = '0',
         visibility = 'hidden'
     ) => {
-        navWrapper.styles.left = pLeft;
-        navWrapper.styles.right = pRight;
-        navWrapper.styles.opacity = opacity;
-        navWrapper.styles.visibility = visibility;
+        navWrapper.style.left = pLeft;
+        navWrapper.style.right = pRight;
+        navWrapper.style.opacity = opacity;
+        navWrapper.style.visibility = visibility;
     }
 
     handleShowNav = (e) => {
@@ -55,13 +55,13 @@ export class ListItemsView extends Component {
 
         //hidden all
         list.forEach(item => {
-            item.styles.margin = '0.5em 0 0 0';
+            item.style.margin = '0.5em 0 0 0';
             const nav = item.firstChild;
             this.toggleVisibleNavigation(nav);
         });
 
         //show current item
-        item.styles.margin = '2.5em 0 0 0';
+        item.style.margin = '2.5em 0 0 0';
         this.toggleVisibleNavigation(nav, '10px', '10px', '1', 'visible');
     }
 
