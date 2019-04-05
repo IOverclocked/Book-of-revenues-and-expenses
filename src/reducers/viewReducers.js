@@ -26,7 +26,7 @@ const toggleModal = (state, action) => {
     }
 }
 
-export const main = (state = initState, action) => {
+const view = (state = initState, action) => {
     switch (action.type) {
         case 'START_APP':
             return startApp(state);
@@ -36,3 +36,5 @@ export const main = (state = initState, action) => {
             return state;
     }
 }
+
+export default view;

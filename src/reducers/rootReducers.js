@@ -1,5 +1,5 @@
-import { combineReducers } from 'react-redux';
-import viewReducers from './viewnReducers';
+import { combineReducers } from 'redux';
+import viewReducers from './viewReducers';
 import mainReducers from './mainReducers';
 
 const rootReducers = combineReducers({

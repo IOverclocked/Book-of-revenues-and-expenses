@@ -3,7 +3,7 @@ const add = (state, action) => {
     return [...state, action.newItem];
 }
 
-export const main = (state = [], action) => {
+const main = (state = [], action) => {
     switch (action.type) {
         case 'ADD':
             return add(state, action);
@@ -11,3 +11,5 @@ export const main = (state = [], action) => {
             return state;
     }
 }
+
+export default main;
