@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Style from './ListItem.module.scss';
+import styles from './ListItem.module.scss';
 import NavButton from '../../components/NavButton/NavButton';
 
 const ListItem = ({ item, ...props }) => (
     <li className={item.expenses ?
-        `${Style.wrapper__expenses} ${Style.wrapper}` :
-        `${Style.wrapper__revenues} ${Style.wrapper}`} {...props}>
-        <section className={Style.section__nav}>
+        `${styles.wrapper__expenses} ${styles.wrapper}` :
+        `${styles.wrapper__revenues} ${styles.wrapper}`} {...props}>
+        <section className={styles.section__nav}>
             <NavButton
                 type={item.expenses ? 'expenses' : 'revenues'}
                 desc='Edit'
@@ -25,20 +25,20 @@ const ListItem = ({ item, ...props }) => (
                 desc='Close'
             />
         </section>
-        <section className={Style.section__desc}>
-            <div className={Style.desc__header}>
-                <div className={Style.header__date}>
+        <section className={styles.section__desc}>
+            <div className={styles.desc__header}>
+                <div className={styles.header__date}>
                     {item.date}
                 </div>
-                <div className={Style.header__title}>
+                <div className={styles.header__title}>
                     {item.title}
                 </div>
             </div>
-            <div className={Style.desc__desc}>
+            <div className={styles.desc__desc}>
                 {item.desc}
             </div>
         </section>
-        <section className={Style.section__cash}>
+        <section className={styles.section__cash}>
             {item.cash}
         </section>
     </li>

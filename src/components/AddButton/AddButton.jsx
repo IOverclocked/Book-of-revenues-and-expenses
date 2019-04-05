@@ -1,10 +1,10 @@
 import React from 'react';
 import Add from '@material-ui/icons/Add';
-import Style from './AddButton.module.scss';
+import styles from './AddButton.module.scss';
 
 const AddButton = ({ ...props }) => (
-    <button className={Style.wrapper} {...props}>
-        <Add className={Style.icon} />
+    <button className={styles.wrapper} {...props}>
+        <Add className={styles.icon} />
     </button>
 )
 

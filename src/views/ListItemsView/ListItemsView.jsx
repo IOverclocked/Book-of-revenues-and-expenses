@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import Style from './ListItemsView.module.scss';
+import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
 export class ListItemsView extends Component {
@@ -40,10 +40,10 @@ export class ListItemsView extends Component {
         opacity = '0',
         visibility = 'hidden'
     ) => {
-        navWrapper.style.left = pLeft;
-        navWrapper.style.right = pRight;
-        navWrapper.style.opacity = opacity;
-        navWrapper.style.visibility = visibility;
+        navWrapper.styles.left = pLeft;
+        navWrapper.styles.right = pRight;
+        navWrapper.styles.opacity = opacity;
+        navWrapper.styles.visibility = visibility;
     }
 
     handleShowNav = (e) => {
@@ -55,20 +55,20 @@ export class ListItemsView extends Component {
 
         //hidden all
         list.forEach(item => {
-            item.style.margin = '0.5em 0 0 0';
+            item.styles.margin = '0.5em 0 0 0';
             const nav = item.firstChild;
             this.toggleVisibleNavigation(nav);
         });
 
         //show current item
-        item.style.margin = '2.5em 0 0 0';
+        item.styles.margin = '2.5em 0 0 0';
         this.toggleVisibleNavigation(nav, '10px', '10px', '1', 'visible');
     }
 
     render() {
         const { list } = this.state;
         return (
-            <ul className={Style.wrapper}>
+            <ul className={styles.wrapper}>
                 {
                     list.map(item => {
                         return (

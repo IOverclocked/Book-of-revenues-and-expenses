@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Style from './HomeView.module.scss';
+import styles from './HomeView.module.scss';
 import Logo from '../../components/Logo/Logo';
 import Hamburger from '../../components/Hamburger/Hamburger';
 import StateView from '../StateView/StateView';
@@ -28,11 +28,11 @@ export class HomeView extends Component {
         const { headerModal, modalToggle } = this.state;
         return (
             <>
-                <header className={Style.header}>
+                <header className={styles.header}>
                     <Logo />
                     <Hamburger />
                 </header>
-                <section className={Style.main}>
+                <section className={styles.main}>
                     <StateView />
                 </section>
                 <ListItemsView />

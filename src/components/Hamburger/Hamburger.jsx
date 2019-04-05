@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Style from './Hamburger.module.scss';
+import styles from './Hamburger.module.scss';
 
 export class Hamburger extends Component {
     state = {
@@ -12,9 +12,9 @@ export class Hamburger extends Component {
 
     render() {
         const { isOpen } = this.state;
-        const { focus, base } = Style;
+        const { focus, base } = styles;
         return (
-            <div className={Style.wrapper} onClick={this.toggleMenu}>
+            <div className={styles.wrapper} onClick={this.toggleMenu}>
                 <span className={isOpen ? focus : base}></span>
                 <span className={isOpen ? focus : base}></span>
                 <span className={isOpen ? focus : base}></span>

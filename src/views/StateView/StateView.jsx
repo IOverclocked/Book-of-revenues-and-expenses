@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Style from './StateView.module.scss';
+import styles from './StateView.module.scss';
 
 export class StateView extends Component {
     state = {
@@ -9,9 +9,9 @@ export class StateView extends Component {
     render() {
         const { cashState } = this.state;
         return (
-            <div className={Style.wrapper}>
-                <div className={Style.circle__wrapper}>
-                    <div className={Style.cashState}>{cashState}</div>
+            <div className={styles.wrapper}>
+                <div className={styles.circle__wrapper}>
+                    <div className={styles.cashState}>{cashState}</div>
                 </div>
             </div>
         )
