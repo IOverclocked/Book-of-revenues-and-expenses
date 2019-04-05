@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal } from '../../actions/actions';
+import { toggleModal, add } from '../../actions/actions';
+import uuid from 'uuid';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Input from '../Input/Input';
@@ -12,18 +13,28 @@ export class Modal extends Component {
         headerTitle: PropTypes.string.isRequired,
         btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
         handleToggleModal: PropTypes.func.isRequired,
+        handleAdd: PropTypes.func.isRequired,
     }
 
     state = {
+        id: uuid.v1(),
         title: '',
         date: '',
         cash: '',
-        desc: ''
+        desc: '',
+        revenues: true,
+        expenses: false
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });;
     }
+
+    handleAddSubmit = (e) => {
+        e.preventDefault();
+        console.log(e);
+    }
+
 
     render() {
         const { title, date, cash, desc } = this.state;
@@ -32,17 +43,25 @@ export class Modal extends Component {
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    <form autoComplete="off" className={styles.form}>
-                        <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} />
-                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
-                        <Input tag="input" type="text" name="cash" value={cash} onChange={this.handleChange} />
-                        <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} />
+                    <form autoComplete="off" className={styles.form} onSubmit={(e) => this.handleAddSubmit(e)}>
+                        <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} required />
+                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} required />
+                        <Input tag="input" type="text" name="cash" value={cash} onChange={this.handleChange} required />
+                        <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} required />
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
+                        <section className={styles.btns}>
+                            {btns.map(btn => {
+                                return (
+                                    <NavButton
+                                        type="submit"
+                                        key={btn.title}
+                                        title={btn.title}
+                                    />
+                                )
+                            })}
+                        </section>
                     </form>
-                    <section className={styles.btns}>
-                        {btns.map(btn => <NavButton key={btn.title} title={btn.title} />)}
-                    </section>
                 </section>
             </ div >
         )
@@ -63,6 +82,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleToggleModal: (toggle = false, title = '', btns = []) => {
             dispatch(toggleModal(toggle, title, btns))
+        },
+        handleAdd: (newItem) => {
+            dispatch(add(newItem))
         }
     }
 }

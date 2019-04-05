@@ -2,6 +2,7 @@
 const ADD = 'ADD';
 
 export const add = (newItem) => {
+    debugger
     return {
         type: ADD,
         newItem
