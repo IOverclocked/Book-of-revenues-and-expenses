@@ -19,7 +19,6 @@ const startApp = (state) => {
 }
 
 const toggleModal = (state, action) => {
-    debugger
     return {
         ...state,
         modal: {

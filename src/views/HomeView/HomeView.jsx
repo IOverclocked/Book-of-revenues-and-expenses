@@ -20,8 +20,8 @@ class HomeView extends Component {
                 </header>
                 <section className={styles.main}>
                     <StateView />
+                    <ListItemsView />
                 </section>
-                <ListItemsView />
                 {toggleModalControl && <Modal />}
                 <AddButton onClick={() => handleToggleModal(true, 'Add')} />
             </>

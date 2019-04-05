@@ -8,7 +8,8 @@ import ModalHeader from '../ModalHeader/ModalHeader';
 
 export class Modal extends Component {
     static propTypes = {
-
+        headerTitle: PropTypes.string.isRequired,
+        handleToggleModal: PropTypes.func.isRequired,
     }
 
     state = {
