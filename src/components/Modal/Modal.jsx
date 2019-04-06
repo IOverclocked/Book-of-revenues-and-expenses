@@ -32,7 +32,8 @@ class Modal extends Component {
 
     handleAddSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
+        this.props.handleAdd({ ...this.state });
+        this.props.handleToggleModal();
     }
 
 
