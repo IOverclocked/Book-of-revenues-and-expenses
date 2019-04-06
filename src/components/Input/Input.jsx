@@ -7,7 +7,7 @@ const _checkIsTextarea = (e, tag, type) => {
     } else return
 }
 
-const Input = ({ tag: Tag, type, name, value, required, ...props }) => (
+const Input = ({ tag: Tag, type, name, value, pattern, required, ...props }) => (
     <div className={styles.wrapper}>
         <Tag
             className={Tag === 'textarea' ? `${styles.input} ${styles.textarea}` : styles.input}
@@ -16,6 +16,7 @@ const Input = ({ tag: Tag, type, name, value, required, ...props }) => (
             placeholder=' '
             onFocus={(e) => _checkIsTextarea(e, Tag, type)}
             onBlur={(e) => _checkIsTextarea(e, Tag, 'text')}
+            pattern={pattern}
             required={required ? required : false}
             {...props}
         />

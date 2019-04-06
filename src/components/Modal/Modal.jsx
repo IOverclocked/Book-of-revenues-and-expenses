@@ -42,8 +42,7 @@ class Modal extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = async (e) => {
-        e.preventDefault();
+    handleAddSubmit = async () => {
         const { date } = this.state;
         const { handleAdd, handleToggleModal } = this.props;
         !date && await this.setState({ date: this.getTodayDate() });
@@ -59,10 +58,10 @@ class Modal extends Component {
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    <form autoComplete="off" className={styles.form} onSubmit={(e) => this.handleAddSubmit(e)}>
+                    <form autoComplete="off" className={styles.form}>
                         <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} required />
                         <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
-                        <Input tag="input" type="text" name="cash" value={cash} onChange={this.handleChange} required />
+                        <Input tag="input" type="text" name="cash" value={cash} pattern="^([1-9]{1}\d{0,5})+([.,]?[0-9]{1,2})|([1-9]{1}\d{0,5})$" onChange={this.handleChange} required />
                         <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} required />
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
@@ -70,9 +69,9 @@ class Modal extends Component {
                             {btns.map(btn => {
                                 return (
                                     <NavButton
-                                        type="submit"
                                         key={btn.title}
                                         title={btn.title}
+                                        onSubmit={(e) => this.handleAddSubmit(e)}
                                     />
                                 )
                             })}
