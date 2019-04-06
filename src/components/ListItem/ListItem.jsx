@@ -3,27 +3,16 @@ import PropTypes from 'prop-types';
 import styles from './ListItem.module.scss';
 import NavButton from '../../components/NavButton/NavButton';
 
+const listButtons = ['Edit', 'Delete', 'More', 'Close'];
+
 const ListItem = ({ item, ...props }) => (
     <li className={item.expenses ?
         `${styles.wrapper__expenses} ${styles.wrapper}` :
         `${styles.wrapper__revenues} ${styles.wrapper}`} {...props}>
         <section className={styles.section__nav}>
-            <NavButton
-                type={item.expenses ? 'expenses' : 'revenues'}
-                title='Edit'
-            />
-            <NavButton
-                type={item.expenses ? 'expenses' : 'revenues'}
-                title='Delete'
-            />
-            <NavButton
-                type={item.expenses ? 'expenses' : 'revenues'}
-                title='More'
-            />
-            <NavButton
-                type={item.expenses ? 'expenses' : 'revenues'}
-                title='Close'
-            />
+            {
+                listButtons.map(title => <NavButton type={item.expenses ? 'expenses' : 'revenues'} title={title} />)
+            }
         </section>
         <section className={styles.section__desc}>
             <div className={styles.desc__header}>

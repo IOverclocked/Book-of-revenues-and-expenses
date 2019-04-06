@@ -8,7 +8,7 @@ import Input from '../Input/Input';
 import ModalHeader from '../ModalHeader/ModalHeader';
 import NavButton from '../NavButton/NavButton';
 
-export class Modal extends Component {
+class Modal extends Component {
     static propTypes = {
         headerTitle: PropTypes.string.isRequired,
         btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
