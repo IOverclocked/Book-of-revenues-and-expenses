@@ -16,7 +16,7 @@ const Input = ({ tag: Tag, type, name, value, required, ...props }) => (
             placeholder=' '
             onFocus={(e) => _checkIsTextarea(e, Tag, type)}
             onBlur={(e) => _checkIsTextarea(e, Tag, 'text')}
-            required
+            required={required ? required : false}
             {...props}
         />
         <label className={styles.label} htmlFor={name}>

@@ -1,37 +1,9 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+import { connect } from 'react-redux';
 import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
 export class ListItemsView extends Component {
-    state = {
-        list: [{
-            id: uuid.v1(),
-            title: 'title',
-            date: '01-01-2019',
-            desc: 'descasdddddddddddddddddddddasdddddddddasdddd',
-            cash: '139.99',
-            revenues: false,
-            expenses: true
-        }, {
-            id: uuid.v1(),
-            title: 'title',
-            date: '01-01-2019',
-            desc: 'desc',
-            cash: '139.99',
-            revenues: true,
-            expenses: false
-        }, {
-            id: uuid.v1(),
-            title: 'title',
-            date: '01-01-2019',
-            desc: 'desc',
-            cash: '139.99',
-            revenues: true,
-            expenses: false
-        }]
-    }
-
     //default hidden
     toggleVisibleNavigation = (
         navWrapper,
@@ -66,7 +38,7 @@ export class ListItemsView extends Component {
     }
 
     render() {
-        const { list } = this.state;
+        const { list } = this.props;
         return (
             <ul className={styles.wrapper}>
                 {
@@ -85,4 +57,11 @@ export class ListItemsView extends Component {
     }
 }
 
-export default ListItemsView;
+const mapStateToProps = (state) => {
+    const { main: list } = state;
+    return {
+        list
+    }
+}
+
+export default (connect(mapStateToProps))(ListItemsView);

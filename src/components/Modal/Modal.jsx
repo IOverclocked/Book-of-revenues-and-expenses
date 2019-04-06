@@ -30,10 +30,25 @@ class Modal extends Component {
         this.setState({ [e.target.name]: e.target.value });;
     }
 
-    handleAddSubmit = (e) => {
+    getTodayDate = () => {
+        const D = new Date();
+        let y = D.getFullYear();
+        let m = D.getMonth() + 1;
+        let d = D.getDate();
+
+        m = m < 10 ? `0${m}` : m;
+        d = d < 10 ? `0${d}` : d;
+
+        return `${d}/${m}/${y}`;
+    }
+
+    handleAddSubmit = async (e) => {
         e.preventDefault();
-        this.props.handleAdd({ ...this.state });
-        this.props.handleToggleModal();
+        const { date } = this.state;
+        const { handleAdd, handleToggleModal } = this.props;
+        !date && await this.setState({ date: this.getTodayDate() });
+        handleAdd({ ...this.state });
+        handleToggleModal();
     }
 
 
@@ -46,7 +61,7 @@ class Modal extends Component {
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
                     <form autoComplete="off" className={styles.form} onSubmit={(e) => this.handleAddSubmit(e)}>
                         <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} required />
-                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} required />
+                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
                         <Input tag="input" type="text" name="cash" value={cash} onChange={this.handleChange} required />
                         <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} required />
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
