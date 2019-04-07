@@ -7,6 +7,7 @@ import styles from './Modal.module.scss';
 import Input from '../Input/Input';
 import ModalHeader from '../ModalHeader/ModalHeader';
 import NavButton from '../NavButton/NavButton';
+import { Formik } from 'formik';
 
 class Modal extends Component {
     static propTypes = {
@@ -24,10 +25,6 @@ class Modal extends Component {
         desc: '',
         revenues: true,
         expenses: false
-    }
-
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });;
     }
 
     getTodayDate = () => {
@@ -60,40 +57,70 @@ class Modal extends Component {
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    <form autoComplete="off" className={styles.form} onSubmit={this.handleAddSubmit}>
-                        <Input tag="input" type="text" name="title" maxLength="10"
-                            value={title}
-                            onChange={this.handleChange}
-                            required />
+                    <Formik
+                        initialValues={{ title, date, cash, desc }}
+                        onSubmit={(values) => {
+                            console.log(values);
+                        }}
+                        validate={(values) => {
+                            const { title, cash, desc } = values;
+                            let errors = {};
+                            const cashReg = /^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$/;
 
-                        <Input tag="input" type="date" name="date"
-                            value={date}
-                            onChange={this.handleChange} />
+                            errors.title = !title ? 'This field is required' : '';
+                            errors.desc = !desc ? 'This field is required' : '';
 
-                        <Input tag="input" type="text" name="cash"
-                            pattern="^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$"
-                            value={cash}
-                            onChange={this.handleChange}
-                            required />
+                            if (!cash) {
+                                errors.cash = 'This field is required';
+                            } else if (!cashReg.test(cash)) {
+                                errors.cash = 'This format isn\'t correct';
+                            }
 
-                        <Input tag="textarea" name="desc" maxLength="400"
-                            value={desc}
-                            onChange={this.handleChange}
-                            required />
+                            return errors;
+                        }}
+                        render={({
+                            values,
+                            errors,
+                            touched,
+                            handleBlur,
+                            handleChange,
+                            handleSubmit,
+                            isSubmitting
+                        }) => (
+                                <form autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
+                                    <Input tag="input" type="text" name="title" maxLength="10"
+                                        value={values.title}
+                                        onChange={handleChange}
+                                        errors={errors.title} />
 
-                        {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
-                            <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
-                        <section className={styles.btns}>
-                            {btns.map(btn => {
-                                return (
-                                    <NavButton
-                                        key={btn.title}
-                                        title={btn.title}
-                                    />
-                                )
-                            })}
-                        </section>
-                    </form>
+                                    <Input tag="input" type="date" name="date"
+                                        value={values.date}
+                                        onChange={handleChange} />
+
+                                    <Input tag="input" type="text" name="cash"
+                                        value={values.cash}
+                                        onChange={handleChange}
+                                        errors={errors.cash} />
+
+                                    <Input tag="textarea" name="desc" maxLength="400"
+                                        value={values.desc}
+                                        onChange={handleChange}
+                                        errors={errors.desc} />
+
+                                    <section className={styles.btns}>
+                                        {btns.map(btn => {
+                                            return (
+                                                <NavButton
+                                                    type="submit"
+                                                    key={btn.title}
+                                                    title={btn.title}
+                                                />
+                                            )
+                                        })}
+                                    </section>
+                                </form>
+                            )}
+                    />
                 </section>
             </ div >
         )
@@ -122,3 +149,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default (connect(mapStateToProps, mapDispatchToProps))(Modal);
+

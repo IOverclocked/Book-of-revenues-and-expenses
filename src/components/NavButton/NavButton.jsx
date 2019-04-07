@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NavButton.module.scss';
 
-const NavButton = ({ type, title, ...props }) => (
-    <button className={
-        type === 'expenses' ? styles.wrapper__expenses :
-            type === 'revenues' ? styles.wrapper__revenues :
+const NavButton = ({ type, classType, title, ...props }) => (
+    <button type={type ? type : 'button'} className={
+        classType === 'expenses' ? styles.wrapper__expenses :
+            classType === 'revenues' ? styles.wrapper__revenues :
                 styles.confirmButton
     } {...props}>
         {title}

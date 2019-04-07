@@ -11,7 +11,7 @@ const ListItem = ({ item, ...props }) => (
         `${styles.wrapper__revenues} ${styles.wrapper}`} {...props}>
         <section className={styles.section__nav}>
             {
-                listButtons.map(title => <NavButton key={title} type={item.expenses ? 'expenses' : 'revenues'} title={title} />)
+                listButtons.map(title => <NavButton key={title} classType={item.expenses ? 'expenses' : 'revenues'} title={title} />)
             }
         </section>
         <section className={styles.section__desc}>

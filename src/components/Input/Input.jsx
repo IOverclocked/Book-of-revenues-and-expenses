@@ -7,23 +7,46 @@ const _checkIsTextarea = (e, tag, type) => {
     } else return
 }
 
-const Input = ({ tag: Tag, type, name, maxLength, value, pattern, required, ...props }) => (
-    <div className={styles.wrapper}>
+const _setInputClassName = (tag, err) => {
+    let style = '';
+
+    if (tag === 'textarea') {
+        style = styles.textarea;
+    } else {
+        style = styles.input;
+    }
+
+    style = err ? `${style} ${styles.valid}` : style;
+
+    return style;
+}
+
+const _setWrapperClassName = (tag) => {
+    if (tag === 'textarea') {
+        return styles.textarea__wrapper;
+    } else {
+        return styles.wrapper;
+    }
+}
+
+const Input = ({ tag: Tag, type, name, maxLength, value, errors, ...props }) => (
+    <div className={_setWrapperClassName(Tag)}>
         <Tag
-            className={Tag === 'textarea' ? `${styles.input} ${styles.textarea}` : styles.input}
+            className={_setInputClassName(Tag, errors)}
             name={name}
             value={value}
             placeholder=' '
             onFocus={(e) => _checkIsTextarea(e, Tag, type)}
             onBlur={(e) => _checkIsTextarea(e, Tag, 'text')}
-            pattern={pattern}
             maxLength={maxLength}
-            required={required ? required : false}
             {...props}
         />
         <label className={styles.label} htmlFor={name}>
             {name}
         </label>
+        <section className={styles.feedback}>
+            {errors}
+        </section>
     </div>
 )
 
