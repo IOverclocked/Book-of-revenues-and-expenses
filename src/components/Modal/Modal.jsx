@@ -42,7 +42,8 @@ class Modal extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = async () => {
+    handleAddSubmit = async (e) => {
+        e.preventDefault();
         const { date } = this.state;
         const { handleAdd, handleToggleModal } = this.props;
         !date && await this.setState({ date: this.getTodayDate() });
@@ -54,15 +55,32 @@ class Modal extends Component {
     render() {
         const { title, date, cash, desc } = this.state;
         const { headerTitle, btns, handleToggleModal } = this.props;
+
         return (
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    <form autoComplete="off" className={styles.form}>
-                        <Input tag="input" type="text" name="title" value={title} onChange={this.handleChange} required />
-                        <Input tag="input" type="date" name="date" value={date} onChange={this.handleChange} />
-                        <Input tag="input" type="text" name="cash" value={cash} pattern="^([1-9]{1}\d{0,5})+([.,]?[0-9]{1,2})|([1-9]{1}\d{0,5})$" onChange={this.handleChange} required />
-                        <Input tag="textarea" name="desc" value={desc} onChange={this.handleChange} required />
+                    <form autoComplete="off" className={styles.form} onSubmit={this.handleAddSubmit}>
+                        <Input tag="input" type="text" name="title" maxLength="10"
+                            value={title}
+                            onChange={this.handleChange}
+                            required />
+
+                        <Input tag="input" type="date" name="date"
+                            value={date}
+                            onChange={this.handleChange} />
+
+                        <Input tag="input" type="text" name="cash"
+                            pattern="^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$"
+                            value={cash}
+                            onChange={this.handleChange}
+                            required />
+
+                        <Input tag="textarea" name="desc" maxLength="400"
+                            value={desc}
+                            onChange={this.handleChange}
+                            required />
+
                         {/* <input className={styles.input} type="radio" name="revenuesAndExpenses" checked />
                             <input className={styles.input} type="radio" name="revenuesAndExpenses" /> */}
                         <section className={styles.btns}>
@@ -71,7 +89,6 @@ class Modal extends Component {
                                     <NavButton
                                         key={btn.title}
                                         title={btn.title}
-                                        onSubmit={(e) => this.handleAddSubmit(e)}
                                     />
                                 )
                             })}
