@@ -9,6 +9,10 @@
     padding: 0 2em;
 }
 
+.radios {
+    @include flex(center, flex-start);
+}
+
 .btns {
     position: absolute;
     bottom: 0;
