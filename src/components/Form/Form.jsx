@@ -29,8 +29,6 @@ class Form extends Component {
     }
 
     handleAddSubmit = (formData) => {
-        console.log(formData);
-        
         const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
