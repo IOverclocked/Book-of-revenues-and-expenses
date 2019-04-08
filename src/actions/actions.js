@@ -18,11 +18,12 @@ export const startApp = () => {
     }
 }
 
-export const toggleModal = (toggle, title, btns) => {
+export const toggleModal = (toggle, title, btns, initData) => {
     return {
         type: TOGGLE_MODAL,
         toggle,
         title,
-        btns
+        btns,
+        initData
     }
 }

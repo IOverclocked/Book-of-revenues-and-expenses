@@ -23,7 +23,7 @@ class HomeView extends Component {
                     <ListItemsView />
                 </section>
                 {toggleModalControl && <Modal />}
-                <AddButton onClick={() => handleToggleModal(true, 'Add', [{ title: 'Add' }])} />
+                <AddButton onClick={() => handleToggleModal(true, 'Add', [{ title: 'Add' }], {er: 'expenses'})} />
             </>
         )
     }
@@ -38,8 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleToggleModal: (toggle, title, btns) => {
-            dispatch(toggleModal(toggle, title, btns));
+        handleToggleModal: (toggle, title, btns, initData) => {
+            dispatch(toggleModal(toggle, title, btns, initData));
         }
     }
 }

@@ -43,9 +43,13 @@ class Form extends Component {
         handleToggleModal();
     }
 
+    componentDidMount = () => {
+        const { initData, initialize } = this.props;
+        initData && initialize(initData);
+    }
+
     render() {
         const { btns, handleSubmit } = this.props;
-
         return (
             <div className={styles.wrapper}>
                 <form onSubmit={handleSubmit(this.handleAddSubmit)}>
@@ -59,7 +63,7 @@ class Form extends Component {
                     <Field tag="textarea" name="desc" label="Description" maxLength="400" component={Input} />
 
                     <section className={styles.radios}>
-                        <Field name="er" label="Expenses" props={{ value: "expenses", name: 'er' }} component={Radio} checked/>
+                        <Field name="er" label="Expenses" props={{ value: "expenses", name: 'er' }} component={Radio} />
                         <Field name="er" label="Revenues" props={{ value: "revenues", name: 'er' }} component={Radio} />
                     </section>
                    
@@ -80,14 +84,15 @@ class Form extends Component {
 const mapStateToProps = (state) => {
     const { view } = state;
     return {
-        btns: view.modal.btns
+        btns: view.modal.btns,
+        initData: view.modal.initData
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleToggleModal: (toggle = false, title = '', btns = []) => {
-            dispatch(toggleModal(toggle, title, btns))
+        handleToggleModal: (toggle = false, title = '', btns = [], initData = {}) => {
+            dispatch(toggleModal(toggle, title, btns, initData))
         },
         handleAdd: (newItem) => {
             dispatch(add(newItem))

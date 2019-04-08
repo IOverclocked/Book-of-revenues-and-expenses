@@ -25,7 +25,8 @@ const toggleModal = (state, action) => {
         modal: {
             toggle: action.toggle,
             title: action.title,
-            btns: action.btns
+            btns: action.btns,
+            initData: action.initData
         }
     }
 }
