@@ -27,7 +27,7 @@ class Form extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = async (formData) => {
+    handleAddSubmit = (formData) => {
         const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
@@ -46,13 +46,14 @@ class Form extends Component {
         return (
             <div className={styles.wrapper}>
                 <form onSubmit={handleSubmit(this.handleAddSubmit)} >
+
                     <Field tag="input" type="text" name="title" label="Title" maxLength="10" component={Input} />
 
                     <Field tag="input" type="date" name="date" label="Date" component={Input} />
 
                     <Field tag="input" type="text" name="cash" label="Cash" component={Input} />
 
-                    <Field tag="textarea" name="desc" maxLength="400" label="Description" component={Input} />
+                    <Field tag="textarea" name="desc" label="Description" maxLength="400" component={Input} />
 
                     <section className={styles.btns}>
                         {btns.map(btn => <NavButton
