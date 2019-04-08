@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
 import uuid from 'uuid';
 import Input from '../Input/Input';
+import Radio from '../Radio/Radio';
 import NavButton from '../NavButton/NavButton';
 
 class Form extends Component {
@@ -28,11 +29,13 @@ class Form extends Component {
     }
 
     handleAddSubmit = (formData) => {
+        console.log(formData);
+        
         const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
-            revenues: true,
-            expenses: false,
+            revenues: formData.er === 'revenues' ? true : false,
+            expenses: formData.er === 'expenses' ? true : false,
             ...formData
         }
         newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
@@ -45,7 +48,7 @@ class Form extends Component {
 
         return (
             <div className={styles.wrapper}>
-                <form onSubmit={handleSubmit(this.handleAddSubmit)} >
+                <form onSubmit={handleSubmit(this.handleAddSubmit)}>
 
                     <Field tag="input" type="text" name="title" label="Title" maxLength="10" component={Input} />
 
@@ -55,6 +58,11 @@ class Form extends Component {
 
                     <Field tag="textarea" name="desc" label="Description" maxLength="400" component={Input} />
 
+                    <section className={styles.radios}>
+                        <Field name="er" label="Expenses" props={{ value: "expenses", name: 'er' }} component={Radio} checked/>
+                        <Field name="er" label="Revenues" props={{ value: "revenues", name: 'er' }} component={Radio} />
+                    </section>
+                   
                     <section className={styles.btns}>
                         {btns.map(btn => <NavButton
                             type="submit"

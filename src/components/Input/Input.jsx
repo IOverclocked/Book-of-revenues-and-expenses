@@ -21,7 +21,7 @@ const _setInputClassName = (tag, touch, err) => {
     return style;
 }
 
-const _setWrapperClassName = (tag) => {
+const _setWrapperClassName = (tag, i, m) => {
     if (tag === 'textarea') {
         return styles.textarea__wrapper;
     } else {
