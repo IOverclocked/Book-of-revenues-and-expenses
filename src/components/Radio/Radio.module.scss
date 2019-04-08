@@ -42,12 +42,12 @@
 
 .circle__expenses {
     @extend .circle__in;
-    background: $expenses95AlfaColor;
+    background: $expenses65AlfaColor;
 }
 
 .circle__revenues {
     @extend .circle__in;
-    background: $revenues95AlfaColor;
+    background: $revenues65AlfaColor;
 }
 
 .input:checked + .circle__out > .circle__in {

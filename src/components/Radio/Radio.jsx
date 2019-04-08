@@ -9,15 +9,21 @@ const _setCircleInClassName = (name) => {
     }
 }
 
+const show = (v) => {
+    console.log(v);
+    
+}
+
 const Radio = ({ input, name, label, value, checked }) => (
     <label className={styles.wrapper}>
+        {show(input.value)}
         <input 
             {...input}
             name={name}
             type="Radio"
             label={label}
             value={value}
-            checked={checked || value === input.value ? true: false}
+            checked={value === input.value ? true: false}
             className={styles.input}
         />
         <div className={styles.circle__out}>
