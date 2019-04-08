@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleModal, add } from '../../actions/actions';
-import { Formik } from 'formik';
+import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
 import uuid from 'uuid';
@@ -13,16 +13,6 @@ class Form extends Component {
         btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
         handleAdd: PropTypes.func.isRequired,
         handleToggleModal: PropTypes.func.isRequired,
-    }
-
-    state = {
-        id: uuid.v1(),
-        title: '',
-        date: '',
-        cash: '',
-        desc: '',
-        revenues: true,
-        expenses: false
     }
 
     getTodayDate = () => {
@@ -37,81 +27,42 @@ class Form extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = async () => {
-        const { date } = this.state;
+    handleAddSubmit = async (formData) => {
         const { handleAdd, handleToggleModal } = this.props;
-        !date && await this.setState({ date: this.getTodayDate() });
-        handleAdd({ ...this.state });
+        const newItem = {
+            id: uuid.v1(),
+            revenues: true,
+            expenses: false,
+            ...formData
+        }
+        newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
+        handleAdd({ ...newItem });
         handleToggleModal();
     }
 
     render() {
-        const { title, date, cash, desc } = this.state;
-        const { btns } = this.props;
+        const { btns, handleSubmit } = this.props;
+
         return (
             <div className={styles.wrapper}>
-                <Formik
-                    initialValues={{ title, date, cash, desc }}
-                    onSubmit={(values) => console.log(values)}
-                    validate={(values) => {
-                        const { title, cash, desc } = values;
-                        let errors = {};
-                        const cashReg = /^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$/;
+                <form onSubmit={handleSubmit(this.handleAddSubmit)} >
+                    <Field tag="input" type="text" name="title" label="Title" maxLength="10" component={Input} />
 
-                        errors.title = !title ? 'This field is required' : '';
-                        errors.desc = !desc ? 'This field is required' : '';
+                    <Field tag="input" type="date" name="date" label="Date" component={Input} />
 
-                        if (!cash) {
-                            errors.cash = 'This field is required';
-                        } else if (!cashReg.test(cash)) {
-                            errors.cash = 'This format isn\'t correct';
-                        }
+                    <Field tag="input" type="text" name="cash" label="Cash" component={Input} />
 
-                        return errors;
-                    }}
-                    render={({
-                        values,
-                        errors,
-                        touched,
-                        handleBlur,
-                        handleChange,
-                        handleSubmit,
-                        isSubmitting
-                    }) => (
-                            <form autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
-                                <Input tag="input" type="text" name="title" maxLength="10"
-                                    value={values.title}
-                                    onChange={handleChange}
-                                    errors={errors.title} />
+                    <Field tag="textarea" name="desc" maxLength="400" label="Description" component={Input} />
 
-                                <Input tag="input" type="date" name="date"
-                                    value={values.date}
-                                    onChange={handleChange} />
-
-                                <Input tag="input" type="text" name="cash"
-                                    value={values.cash}
-                                    onChange={handleChange}
-                                    errors={errors.cash} />
-
-                                <Input tag="textarea" name="desc" maxLength="400"
-                                    value={values.desc}
-                                    onChange={handleChange}
-                                    errors={errors.desc} />
-
-                                <section className={styles.btns}>
-                                    {btns.map(btn => {
-                                        return (
-                                            <NavButton
-                                                type="submit"
-                                                key={btn.title}
-                                                title={btn.title}
-                                            />
-                                        )
-                                    })}
-                                </section>
-                            </form>
+                    <section className={styles.btns}>
+                        {btns.map(btn => <NavButton
+                            type="submit"
+                            key={btn.title}
+                            title={btn.title} 
+                            />
                         )}
-                />
+                    </section>
+                </form>
             </div>
         )
     }
@@ -135,4 +86,26 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps))(Form);
+const validate = (formData) => {
+    const { title, cash, desc } = formData;
+    let errors = {};
+    const cashReg = /^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$/;
+
+    errors.title = !title ? 'This field is required' : '';
+    errors.desc = !desc ? 'This field is required' : '';
+
+    if (!cash) {
+        errors.cash = 'This field is required';
+    } else if (!cashReg.test(cash)) {
+        errors.cash = 'This format isn\'t correct';
+    }
+
+    return errors;
+}
+
+const decoratedForm = connect(mapStateToProps, mapDispatchToProps)(Form);
+
+export default reduxForm({
+    form: 'form',
+    validate
+})(decoratedForm);

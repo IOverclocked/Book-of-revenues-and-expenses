@@ -7,16 +7,16 @@ const _checkIsTextarea = (e, tag, type) => {
     } else return
 }
 
-const _setInputClassName = (tag, err) => {
+const _setInputClassName = (tag, touch, err) => {
     let style = '';
-
+    
     if (tag === 'textarea') {
         style = styles.textarea;
     } else {
         style = styles.input;
     }
 
-    style = err ? `${style} ${styles.valid}` : style;
+    style = touch && err ? `${style} ${styles.valid}` : style;
 
     return style;
 }
@@ -29,24 +29,25 @@ const _setWrapperClassName = (tag) => {
     }
 }
 
-const Input = ({ tag: Tag, type, name, maxLength, value, errors, ...props }) => (
+const Input = ({ input, tag: Tag, type, name, label, maxLength, meta: { touched, error } }) => (
     <div className={_setWrapperClassName(Tag)}>
         <Tag
-            className={_setInputClassName(Tag, errors)}
+            {...input}
+            className={_setInputClassName(Tag, touched, error)}
+            label={label}
             name={name}
-            value={value}
             placeholder=' '
             onFocus={(e) => _checkIsTextarea(e, Tag, type)}
             onBlur={(e) => _checkIsTextarea(e, Tag, 'text')}
             maxLength={maxLength}
-            {...props}
         />
         <label className={styles.label} htmlFor={name}>
-            {name}
+            {label}
         </label>
-        <section className={styles.feedback}>
-            {errors}
+        {touched && error && <section className={styles.feedback}>
+            {error}
         </section>
+        }
     </div>
 )
 
