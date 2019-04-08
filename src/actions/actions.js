@@ -8,6 +8,24 @@ export const add = (newItem) => {
     }
 }
 
+//Actions for state reducers
+const EXPENSES = 'EXPENSES';
+const REVENUES = 'REVENUES';
+
+export const expenses = (expenses) => {
+    return {
+        type: EXPENSES,
+        expenses
+    }
+}
+
+export const revenues = (revenues) => {
+    return {
+        type: REVENUES,
+        revenues
+    }
+}
+
 //Actions for view reducers
 const START_APP = 'START_APP';
 const TOGGLE_MODAL = 'TOGGLE_MODAL';

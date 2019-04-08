@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styles from './StateView.module.scss';
 
 export class StateView extends Component {
-    state = {
-        cashState: 4358
-    }
-
     render() {
-        const { cashState } = this.state;
+        const { result } = this.props;
         return (
             <div className={styles.wrapper}>
                 <div className={styles.circle__wrapper}>
-                    <div className={styles.cashState}>{cashState}</div>
+                    <div className={styles.cashState}>{result.result}</div>
                 </div>
             </div>
         )
     }
 }
 
-export default StateView
+const mapStateToProps = (state) => {
+    const {result} = state;
+    return {
+        result
+    }
+}
+
+export default (connect(mapStateToProps))(StateView);
