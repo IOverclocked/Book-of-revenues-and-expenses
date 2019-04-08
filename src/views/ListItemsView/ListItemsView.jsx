@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toggleNavigation } from '../../actions/actions';
 import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
@@ -18,23 +19,41 @@ export class ListItemsView extends Component {
         navWrapper.style.visibility = visibility;
     }
 
-    handleShowNav = (e) => {
+    showNav = (item, nav) => {
+        const { handleToggleNavigation } = this.props;
+        handleToggleNavigation(item.id);
+        item.style.margin = '2.5em 0 0 0';
+        this.toggleVisibleNavigation(nav, '10px', '10px', '1', 'visible');
+    }
+
+    hideNav = (list, navId) => {
+        const { handleToggleNavigation } = this.props;
+        handleToggleNavigation('');
+        list.forEach(item => {
+            if (item.id === navId) {
+                item.style.margin = '0.5em 0 0 0';
+                const nav = item.firstChild;
+                this.toggleVisibleNavigation(nav);
+            }
+        });
+    }
+
+    handleToggle = (e) => {
+        const { navigation: { id, open } } = this.props;
         const item = e.currentTarget;
         const nav = item.firstChild;
         const index = item.classList.length - 1;
         const wrappers = item.classList[index];
         const list = document.querySelectorAll(`.${wrappers}`);
 
-        //hidden all
-        list.forEach(item => {
-            item.style.margin = '0.5em 0 0 0';
-            const nav = item.firstChild;
-            this.toggleVisibleNavigation(nav);
-        });
-
-        //show current item
-        item.style.margin = '2.5em 0 0 0';
-        this.toggleVisibleNavigation(nav, '10px', '10px', '1', 'visible');
+        if (!id && !open) {
+            this.showNav(item, nav);
+        } else if (id === item.id) {
+            this.hideNav(list, id);
+        } else {
+            this.hideNav(list, id);
+            this.showNav(item, nav);
+        }
     }
 
     render() {
@@ -48,7 +67,7 @@ export class ListItemsView extends Component {
                                 id={item.id}
                                 key={item.id}
                                 item={item}
-                                onClick={this.handleShowNav}
+                                onClick={this.handleToggle}
                             />)
                     })
                 }
@@ -58,10 +77,19 @@ export class ListItemsView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { main: list } = state;
+    const { main: list, view } = state;
     return {
-        list
+        list,
+        navigation: view.navigation
     }
 }
 
-export default (connect(mapStateToProps))(ListItemsView);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleToggleNavigation: (id) => {
+            dispatch(toggleNavigation(id))
+        }
+    }
+}
+
+export default (connect(mapStateToProps, mapDispatchToProps))(ListItemsView);
