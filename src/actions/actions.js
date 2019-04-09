@@ -1,5 +1,6 @@
 //Actions for main reducers
 const ADD = 'ADD';
+const DEL = 'DEL';
 
 export const add = (newItem) => {
     return {
@@ -8,23 +9,23 @@ export const add = (newItem) => {
     }
 }
 
+export const del = (id) => {
+    return {
+        type: DEL,
+        id
+    }
+}
+
 //Actions for state reducers
-const EXPENSES = 'EXPENSES';
-const REVENUES = 'REVENUES';
+const UPDATE = 'UPDATE';
 
-export const expenses = (expenses) => {
+export const update = (list) => {
     return {
-        type: EXPENSES,
-        expenses
+        type: UPDATE,
+        list
     }
 }
 
-export const revenues = (revenues) => {
-    return {
-        type: REVENUES,
-        revenues
-    }
-}
 
 //Actions for view reducers
 const START_APP = 'START_APP';

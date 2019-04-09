@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, add, expenses, revenues } from '../../actions/actions';
+import { toggleModal, add, update } from '../../actions/actions';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
@@ -15,8 +15,7 @@ class Form extends Component {
         initialData: PropTypes.object,
         handleAdd: PropTypes.func.isRequired,
         handleToggleModal: PropTypes.func.isRequired,
-        handleExpenses: PropTypes.func.isRequired,
-        handleRevenues: PropTypes.func.isRequired,
+        handleUpdate: PropTypes.func.isRequired,
     }
 
     getTodayDate = () => {
@@ -31,18 +30,21 @@ class Form extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = (formData) => {
-        const { handleAdd, handleToggleModal, handleExpenses, handleRevenues } = this.props;
+    handleAddSubmit = async (formData) => {
+        const { handleAdd, handleToggleModal, handleUpdate } = this.props;
         const newItem = {
             id: uuid.v1(),
             revenues: formData.er === 'revenues' ? true : false,
             expenses: formData.er === 'expenses' ? true : false,
             ...formData
         }
+        newItem.cash = Number(newItem.cash);
         newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
-        handleAdd({ ...newItem });
-        newItem.revenues && handleRevenues(Number(newItem.cash));
-        newItem.expenses && handleExpenses(Number(newItem.cash));
+        await handleAdd({ ...newItem });
+        const { list } = await this.props;
+        console.log(list);
+        
+        handleUpdate(list);
         handleToggleModal();
     }
 
@@ -85,10 +87,11 @@ class Form extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { view } = state;
+    const { view, main: list } = state;
     return {
         btns: view.modal.btns,
-        initData: view.modal.initData
+        initData: view.modal.initData,
+        list
     }
 }
 
@@ -100,12 +103,9 @@ const mapDispatchToProps = (dispatch) => {
         handleAdd: (newItem) => {
             dispatch(add(newItem))
         },
-        handleRevenues: (rev) => {
-            dispatch(revenues(rev))
+        handleUpdate: (list) => {
+            dispatch(update(list))
         },
-        handleExpenses: (exp) => {
-            dispatch(expenses(exp))
-        }
     }
 }
 

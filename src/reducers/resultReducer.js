@@ -5,30 +5,32 @@ const initState = r ? JSON.parse(r) : {
     revenues: 0
 }
 
-const expenses = (state, action) => {
+const update = (state, action) => {
+    let expenses = 0;
+    let revenues = 0;
+    let result = 0;
+    action.list.forEach(item => {
+        if (item.expenses) {
+            expenses += item.cash;
+            result -= item.cash;
+        } else {
+            revenues += item.cash;
+            result += item.cash;
+        } 
+    });    
     return {
         ...state,
-        result: (state.result - action.expenses).toFixed(2),
-        expenses: state.expenses + action.expenses
+        result,
+        expenses,
+        revenues
     }
-}
-
-const revenues = (state, action) => {
-    return {
-        ...state,
-        result: state.result + action.revenues,
-        revenues: state.revenues + action.revenues
-    }
-}
+} 
 
 const result = (state = initState, action) => {
     switch (action.type) {
-        case 'EXPENSES':
-            localStorage.setItem('Result', JSON.stringify(expenses(state, action)));
-            return expenses(state, action);
-        case 'REVENUES':
-            localStorage.setItem('Result', JSON.stringify(revenues(state, action)));
-            return revenues(state, action);
+        case 'UPDATE': 
+            localStorage.setItem('Result', JSON.stringify(update(state, action)));
+            return update(state, action);
         default:
             return state;
     }
