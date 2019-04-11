@@ -9,7 +9,7 @@ const _checkIsTextarea = (e, tag, type) => {
 
 const _setInputClassName = (tag, touch, err) => {
     let style = '';
-    
+
     if (tag === 'textarea') {
         style = styles.textarea;
     } else {
