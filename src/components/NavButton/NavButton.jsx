@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './NavButton.module.scss';
 
 const NavButton = ({ type, classType, title, ...props }) => (
-    <button type={type ? type : 'button'} className={
+    <button type={type ? type : 'button'} title={title} className={
         classType === 'expenses' ? styles.wrapper__expenses :
             classType === 'revenues' ? styles.wrapper__revenues :
                 styles.confirmButton

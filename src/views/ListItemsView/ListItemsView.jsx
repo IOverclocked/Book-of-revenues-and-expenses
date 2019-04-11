@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleNavigation } from '../../actions/actions';
+import { toggleNavigation, del } from '../../actions/actions';
 import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
@@ -38,6 +38,27 @@ export class ListItemsView extends Component {
         });
     }
 
+    handleClickOnItem = (e, id) => {
+        const { handleDel } = this.props;
+        if (e.target.tagName === 'BUTTON') {
+            switch (e.target.title) {
+                case 'Delete':
+                    handleDel(id);
+                    break;
+                case 'Edit':
+                    console.log('Edit');
+                    break;
+                case 'More':
+                    console.log('More');
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            this.handleToggle(e);
+        }
+    }
+
     handleToggle = (e) => {
         const { navigation: { id, open } } = this.props;
         const item = e.currentTarget;
@@ -67,7 +88,7 @@ export class ListItemsView extends Component {
                                 id={item.id}
                                 key={item.id}
                                 item={item}
-                                onClick={this.handleToggle}
+                                onClick={(e) => this.handleClickOnItem(e, item.id)}
                             />)
                     })
                 }
@@ -77,9 +98,9 @@ export class ListItemsView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { main: list, view } = state;
+    const { view, main } = state;
     return {
-        list,
+        list: main.list,
         navigation: view.navigation
     }
 }
@@ -88,7 +109,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleToggleNavigation: (id) => {
             dispatch(toggleNavigation(id))
-        }
+        },
+        handleDel: (id) => {
+            dispatch(del(id))
+        },
     }
 }
 

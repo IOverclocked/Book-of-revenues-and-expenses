@@ -11,9 +11,9 @@ import Modal from '../../components/Modal/Modal';
 
 class HomeView extends Component {
     render() {
-        const { toggleModalControl, handleToggleModal } = this.props;
+        const { toggleModalControl, handleToggleModal, result } = this.props;
         const btns = [{ title: 'Add' }];
-        const initData = {er: 'expenses'};
+        const initData = { er: 'expenses' };
         return (
             <>
                 <header className={styles.header}>
@@ -21,7 +21,7 @@ class HomeView extends Component {
                     <Hamburger />
                 </header>
                 <section className={styles.main}>
-                    <StateView />
+                    <StateView result={result} />
                     <ListItemsView />
                 </section>
                 {toggleModalControl && <Modal />}
@@ -32,8 +32,9 @@ class HomeView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { view } = state;
+    const { main, view } = state;
     return {
+        result: main.result,
         toggleModalControl: view.modal.toggle
     }
 }

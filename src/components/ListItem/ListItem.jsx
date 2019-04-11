@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { del, update } from '../../actions/actions';
 import PropTypes from 'prop-types';
 import styles from './ListItem.module.scss';
 import NavButton from '../../components/NavButton/NavButton';
 
 const listButtons = ['Edit', 'Delete', 'More'];
 
-const ListItem = ({ item, handleDel, handleUpdate, list, ...props }) => (
+const ListItem = ({ item, list, ...props }) => (
     <li className={item.expenses ?
         `${styles.wrapper__expenses} ${styles.wrapper}` :
         `${styles.wrapper__revenues} ${styles.wrapper}`} {...props}>
@@ -17,16 +15,6 @@ const ListItem = ({ item, handleDel, handleUpdate, list, ...props }) => (
                     key={title}
                     title={title}
                     classType={item.expenses ? 'expenses' : 'revenues'}
-                    onClick={async (e) => {
-                        switch (title) {
-                            case 'Delete': 
-                                await handleDel(item.id); 
-                                await handleUpdate(list);
-                                break;
-                            default:
-                                break;
-                        }
-                    }}
                 />)
             }
         </section>
@@ -53,22 +41,4 @@ ListItem.propTypes = {
     item: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = (state) => {
-    const { main: list} = state;
-    return {
-        list
-    }
-}   
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handleDel: (id) => {
-            dispatch(del(id))
-        },
-        handleUpdate: (list) => {
-            dispatch(update(list))
-        }
-    }
-}
-
-export default (connect(mapStateToProps, mapDispatchToProps))(ListItem);
+export default ListItem;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, add, update } from '../../actions/actions';
+import { toggleModal, add } from '../../actions/actions';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
@@ -15,7 +15,6 @@ class Form extends Component {
         initialData: PropTypes.object,
         handleAdd: PropTypes.func.isRequired,
         handleToggleModal: PropTypes.func.isRequired,
-        handleUpdate: PropTypes.func.isRequired,
     }
 
     getTodayDate = () => {
@@ -31,7 +30,7 @@ class Form extends Component {
     }
 
     handleAddSubmit = async (formData) => {
-        const { handleAdd, handleToggleModal, handleUpdate } = this.props;
+        const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
             revenues: formData.er === 'revenues' ? true : false,
@@ -41,10 +40,6 @@ class Form extends Component {
         newItem.cash = Number(newItem.cash);
         newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
         await handleAdd({ ...newItem });
-        const { list } = await this.props;
-        console.log(list);
-        
-        handleUpdate(list);
         handleToggleModal();
     }
 
@@ -71,13 +66,13 @@ class Form extends Component {
                         <Field name="er" label="Expenses" props={{ value: "expenses", name: 'er' }} component={Radio} />
                         <Field name="er" label="Revenues" props={{ value: "revenues", name: 'er' }} component={Radio} />
                     </section>
-                   
+
                     <section className={styles.btns}>
                         {btns.map(btn => <NavButton
                             type="submit"
                             key={btn.title}
-                            title={btn.title} 
-                            />
+                            title={btn.title}
+                        />
                         )}
                     </section>
                 </form>
@@ -103,16 +98,13 @@ const mapDispatchToProps = (dispatch) => {
         handleAdd: (newItem) => {
             dispatch(add(newItem))
         },
-        handleUpdate: (list) => {
-            dispatch(update(list))
-        },
     }
 }
 
 const validate = (formData) => {
     const { title, cash, desc } = formData;
     let errors = {};
-    const cashReg = /^([1-9]{1}\d{0,5})+([.]?[0-9]{1,2})|([0]{1})+([.]?[0-9]{1,2})|([1-9]{1}\d{0,5})$/;
+    const cashReg = /^\$?(\d{1,7})(\.\d{1,2})?$/;
 
     errors.title = !title ? 'This field is required' : '';
     errors.desc = !desc ? 'This field is required' : '';

@@ -16,17 +16,6 @@ export const del = (id) => {
     }
 }
 
-//Actions for state reducers
-const UPDATE = 'UPDATE';
-
-export const update = (list) => {
-    return {
-        type: UPDATE,
-        list
-    }
-}
-
-
 //Actions for view reducers
 const START_APP = 'START_APP';
 const TOGGLE_MODAL = 'TOGGLE_MODAL';
