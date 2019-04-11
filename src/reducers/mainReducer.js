@@ -1,4 +1,3 @@
-
 // const l = localStorage.getItem('Main');
 const l = undefined;
 
@@ -22,12 +21,13 @@ const update = (list) => {
     let revenues = 0;
     let result = 0;
     list.forEach(item => {
+        const i = Number(item.cash);
         if (item.expenses) {
-            expenses += item.cash;
-            result -= item.cash;
+            expenses += i;
+            result -= i;
         } else {
-            revenues += item.cash;
-            result += item.cash;
+            revenues += i;
+            result += i;
         }
     });
     return {
@@ -40,7 +40,10 @@ const update = (list) => {
 
 const add = (state, action) => update([...state.list, action.newItem]);
 
-const del = (state, action) => update([...state.list.filter(el => el.id !== action.id)]);
+const del = (state, action) => update(state.list.filter(el => el.id !== action.id));
+
+const edit = (state, action) => update(state.list.map(el => el.id === action.id ? action.newItem : el));
+
 
 const main = (state = initState, action) => {
     switch (action.type) {
@@ -50,6 +53,9 @@ const main = (state = initState, action) => {
         case 'DEL':
             // localStorage.setItem('Main', JSON.stringify(del(state, action)));
             return del(state, action);
+        case 'EDIT':
+            // localStorage.setItem('Main', JSON.stringify(del(state, action)));
+            return edit(state, action);
         default:
             return state;
     }

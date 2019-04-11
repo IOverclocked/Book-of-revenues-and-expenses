@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleNavigation, del } from '../../actions/actions';
+import { toggleNavigation, toggleModal, del } from '../../actions/actions';
 import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
 
@@ -39,14 +39,16 @@ export class ListItemsView extends Component {
     }
 
     handleClickOnItem = (e, id) => {
-        const { handleDel } = this.props;
+        const { handleDel, handleToggleModal, list } = this.props;
         if (e.target.tagName === 'BUTTON') {
             switch (e.target.title) {
                 case 'Delete':
                     handleDel(id);
                     break;
                 case 'Edit':
-                    console.log('Edit');
+                    const btns = [{ title: 'Confirm' }];
+                    const initData = list.find(el => el.id === id);
+                    handleToggleModal(true, 'Edit', btns, initData);
                     break;
                 case 'More':
                     console.log('More');
@@ -110,9 +112,13 @@ const mapDispatchToProps = (dispatch) => {
         handleToggleNavigation: (id) => {
             dispatch(toggleNavigation(id))
         },
+        handleToggleModal: (toggle, title, btns, initData) => {
+            dispatch(toggleModal(toggle, title, btns, initData))
+        },
         handleDel: (id) => {
             dispatch(del(id))
         },
+
     }
 }
 

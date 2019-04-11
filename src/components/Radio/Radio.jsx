@@ -9,9 +9,9 @@ const _setCircleInClassName = (name) => {
     }
 }
 
-const Radio = ({ input, name, label, value, checked }) => (
+const Radio = ({ input, name, label, value }) => (
     <label className={styles.wrapper}>
-        <input 
+        <input
             {...input}
             name={name}
             type="Radio"

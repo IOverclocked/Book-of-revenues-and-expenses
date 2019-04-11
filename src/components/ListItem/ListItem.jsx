@@ -6,15 +6,13 @@ import NavButton from '../../components/NavButton/NavButton';
 const listButtons = ['Edit', 'Delete', 'More'];
 
 const ListItem = ({ item, list, ...props }) => (
-    <li className={item.expenses ?
-        `${styles.wrapper__expenses} ${styles.wrapper}` :
-        `${styles.wrapper__revenues} ${styles.wrapper}`} {...props}>
+    <li className={`${styles[item.er]} ${styles.wrapper}`} {...props}>
         <section className={styles.section__nav}>
             {
                 listButtons.map(title => <NavButton
                     key={title}
                     title={title}
-                    classType={item.expenses ? 'expenses' : 'revenues'}
+                    classType={item.er}
                 />)
             }
         </section>

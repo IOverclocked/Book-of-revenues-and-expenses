@@ -1,6 +1,7 @@
 //Actions for main reducers
 const ADD = 'ADD';
 const DEL = 'DEL';
+const EDIT = 'EDIT';
 
 export const add = (newItem) => {
     return {
@@ -13,6 +14,14 @@ export const del = (id) => {
     return {
         type: DEL,
         id
+    }
+}
+
+export const edit = (id, newItem) => {
+    return {
+        type: EDIT,
+        id,
+        newItem
     }
 }
 

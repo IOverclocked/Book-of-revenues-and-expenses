@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, add } from '../../actions/actions';
+import { toggleModal, add, edit } from '../../actions/actions';
 import { reduxForm, Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import styles from './Form.module.scss';
@@ -33,14 +33,32 @@ class Form extends Component {
         const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
-            revenues: formData.er === 'revenues' ? true : false,
-            expenses: formData.er === 'expenses' ? true : false,
             ...formData
         }
         newItem.cash = Number(newItem.cash);
         newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
         await handleAdd({ ...newItem });
         handleToggleModal();
+    }
+
+    handleEditSubmit = async (formData) => {
+        const { handleEdit, handleToggleModal } = this.props;
+        handleEdit(formData.id, formData);
+        handleToggleModal();
+    }
+
+    _handleSubmit = (fromData) => {
+        const { title } = this.props;
+        switch (title) {
+            case 'Add':
+                this.handleAddSubmit(fromData);
+                break;
+            case 'Edit':
+                this.handleEditSubmit(fromData);
+                break;
+            default:
+                break;
+        }
     }
 
     componentDidMount = () => {
@@ -52,7 +70,7 @@ class Form extends Component {
         const { btns, handleSubmit } = this.props;
         return (
             <div className={styles.wrapper}>
-                <form onSubmit={handleSubmit(this.handleAddSubmit)}>
+                <form onSubmit={handleSubmit(this._handleSubmit)}>
 
                     <Field tag="input" type="text" name="title" label="Title" maxLength="10" component={Input} />
 
@@ -82,11 +100,12 @@ class Form extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { view, main: list } = state;
+    const { view, main } = state;
     return {
         btns: view.modal.btns,
         initData: view.modal.initData,
-        list
+        list: main.list,
+        title: view.modal.title
     }
 }
 
@@ -98,6 +117,9 @@ const mapDispatchToProps = (dispatch) => {
         handleAdd: (newItem) => {
             dispatch(add(newItem))
         },
+        handleEdit: (id, newItem) => {
+            dispatch(edit(id, newItem))
+        }
     }
 }
 
