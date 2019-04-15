@@ -1,0 +1,43 @@
+@import "../../styles/imports.scss";
+
+.wrapper {
+    padding: 2em;
+    color: $primaryFontColor;
+    font-family: $primaryFont;
+}
+
+//abstract class;
+.__wrapper {
+    @include flex(center, space-between);
+    margin: 0 0 1em 0;
+    padding: 0 0 1em 0;
+    border-bottom: 2px solid;
+}
+
+.wrapper__expenses {
+    @extend .__wrapper;
+    border-color: $expenses65AlfaColor;
+}
+
+.wrapper__revenues {
+    @extend .__wrapper;
+    border-color: $revenues65AlfaColor;
+}
+
+.title {
+    font-size: 28px;
+    margin: 0 0 0.5em 0;
+}
+
+.date {
+    font-weight: 600;
+}
+
+.cash {
+    font-size: 28px;
+}
+
+.desc {
+    font-size: 18px;
+    word-wrap: break-word;
+}

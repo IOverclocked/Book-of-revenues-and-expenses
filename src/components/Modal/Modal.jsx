@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import ModalHeader from '../ModalHeader/ModalHeader';
 import Form from '../Form/Form';
+import MoreView from '../../views/MoreView/MoreView';
 
 class Modal extends Component {
     static propTypes = {
@@ -13,13 +14,16 @@ class Modal extends Component {
     }
 
     render() {
-        const { headerTitle, handleToggleModal } = this.props;
-
+        const { headerTitle, handleToggleModal, details, btns } = this.props;
         return (
             <div className={styles.modal__wrapper}>
                 <section className={styles.wrapper}>
                     <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    <Form />
+                    {
+                        headerTitle !== 'More'
+                            ? <Form />
+                            : <MoreView details={details} btns={btns} />
+                    }
                 </section>
             </ div >
         )
@@ -30,7 +34,8 @@ const mapStateToProps = (state) => {
     const { view } = state;
     return {
         headerTitle: view.modal.title,
-        btns: view.modal.btns
+        btns: view.modal.btns,
+        details: view.modal.initData
     }
 }
 

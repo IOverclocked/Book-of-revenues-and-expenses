@@ -40,18 +40,18 @@ export class ListItemsView extends Component {
 
     handleClickOnItem = (e, id) => {
         const { handleDel, handleToggleModal, list } = this.props;
+        const initData = list.find(el => el.id === id);
+
         if (e.target.tagName === 'BUTTON') {
             switch (e.target.title) {
                 case 'Delete':
                     handleDel(id);
                     break;
                 case 'Edit':
-                    const btns = [{ title: 'Confirm' }];
-                    const initData = list.find(el => el.id === id);
-                    handleToggleModal(true, 'Edit', btns, initData);
+                    handleToggleModal(true, 'Edit', [{ title: 'Confirm' }], initData);
                     break;
                 case 'More':
-                    console.log('More');
+                    handleToggleModal(true, 'More', [{ title: 'Edit' }, { title: 'Delete' }], initData);
                     break;
                 default:
                     break;
