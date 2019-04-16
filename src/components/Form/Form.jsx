@@ -86,12 +86,7 @@ class Form extends Component {
                     </section>
 
                     <section className={styles.btns}>
-                        {btns.map(btn => <NavButton
-                            type="submit"
-                            key={btn.title}
-                            title={btn.title}
-                        />
-                        )}
+                        {btns.map(btn => <NavButton type="submit" key={btn.title} title={btn.title} />)}
                     </section>
                 </form>
             </div>

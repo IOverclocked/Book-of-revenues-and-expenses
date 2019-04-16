@@ -3,7 +3,7 @@ import styles from './MoreView.module.scss';
 import PropTypes from 'prop-types';
 import NavButton from '../../components/NavButton/NavButton';
 
-const MoreView = ({ details, btns }) => {
+const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
     const { title, date, cash, desc, er } = details;
 
     return (
@@ -19,14 +19,21 @@ const MoreView = ({ details, btns }) => {
                 {desc}
             </section>
             <section className={styles.wrapper__buttons}>
-                {btns.map(btn => <NavButton key={btn.title} title={btn.title} />)}
+                {btns.map(btn => <NavButton key={btn.title} title={btn.title} onClick={() => {
+                    btn.title === 'Edit'
+                        ? handleToggleModal('Edit', details)
+                        : handleDel(); handleToggleModal();
+                }} />)}
             </section>
         </section>
     )
 }
 
 MoreView.propTypes = {
-    details: PropTypes.object.isRequired
+    details: PropTypes.object.isRequired,
+    btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    handleToggleModal: PropTypes.func.isRequired,
+    handleDel: PropTypes.func.isRequired,
 }
 
 export default MoreView;

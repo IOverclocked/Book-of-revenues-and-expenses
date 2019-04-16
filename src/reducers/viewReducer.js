@@ -6,7 +6,7 @@ const initState = {
     modal: {
         title: '',
         toggle: false,
-        btns: [{ title: ''}]
+        btns: [{ title: '' }]
     },
     navigation: {
         id: '',
@@ -19,18 +19,47 @@ const startApp = (state) => {
         ...state,
         start: {
             open: !state.start.open
-        } 
+        }
     }
 }
 
 const toggleModal = (state, action) => {
-    return {
-        ...state,
-        modal: {
-            toggle: action.toggle,
-            title: action.title,
-            btns: action.btns,
-            initData: action.initData
+    switch (action.modalType) {
+        case 'Add': return {
+            ...state,
+            modal: {
+                toggle: true,
+                title: 'Add',
+                btns: [{ title: 'Add' }],
+                initData: action.initData
+            }
+        }
+        case 'Edit': return {
+            ...state,
+            modal: {
+                toggle: true,
+                title: 'Edit',
+                btns: [{ title: 'Confirm' }],
+                initData: action.initData
+            }
+        }
+        case 'More': return {
+            ...state,
+            modal: {
+                toggle: true,
+                title: 'More',
+                btns: [{ title: 'Edit' }, { title: 'Delete' }],
+                initData: action.initData
+            }
+        }
+        default: return {
+            ...state,
+            modal: {
+                toggle: false,
+                title: undefined,
+                btns: [],
+                initData: {}
+            }
         }
     }
 }
@@ -49,9 +78,9 @@ const view = (state = initState, action) => {
     switch (action.type) {
         case 'START_APP':
             return startApp(state);
-        case 'TOGGLE_MODAL': 
+        case 'TOGGLE_MODAL':
             return toggleModal(state, action);
-        case 'TOGGLE_NAVIGATION': 
+        case 'TOGGLE_NAVIGATION':
             return toggleNavigation(state, action);
         default:
             return state;

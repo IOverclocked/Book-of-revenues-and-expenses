@@ -48,10 +48,10 @@ export class ListItemsView extends Component {
                     handleDel(id);
                     break;
                 case 'Edit':
-                    handleToggleModal(true, 'Edit', [{ title: 'Confirm' }], initData);
+                    handleToggleModal('Edit', initData);
                     break;
                 case 'More':
-                    handleToggleModal(true, 'More', [{ title: 'Edit' }, { title: 'Delete' }], initData);
+                    handleToggleModal('More', initData);
                     break;
                 default:
                     break;
@@ -112,13 +112,12 @@ const mapDispatchToProps = (dispatch) => {
         handleToggleNavigation: (id) => {
             dispatch(toggleNavigation(id))
         },
-        handleToggleModal: (toggle, title, btns, initData) => {
-            dispatch(toggleModal(toggle, title, btns, initData))
+        handleToggleModal: (modalType, initData) => {
+            dispatch(toggleModal(modalType, initData))
         },
         handleDel: (id) => {
             dispatch(del(id))
         },
-
     }
 }
 
