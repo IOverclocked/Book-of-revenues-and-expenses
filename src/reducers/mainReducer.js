@@ -1,5 +1,5 @@
-// const l = localStorage.getItem('Main');
-const l = undefined;
+const l = localStorage.getItem('Main');
+// const l = undefined;
 
 const template = {
     result: 0,
@@ -48,7 +48,7 @@ const edit = (state, action) => update(state.list.map(el => el.id === action.id 
 const main = (state = initState, action) => {
     switch (action.type) {
         case 'ADD':
-            // localStorage.setItem('Main', JSON.stringify(add(state, action)));
+            localStorage.setItem('Main', JSON.stringify(add(state, action)));
             return add(state, action);
         case 'DEL':
             // localStorage.setItem('Main', JSON.stringify(del(state, action)));

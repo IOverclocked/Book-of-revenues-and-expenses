@@ -19,7 +19,7 @@ const MoreView = ({ details, btns }) => {
                 {desc}
             </section>
             <section className={styles.wrapper__buttons}>
-                {/* to do buttons */}
+                {btns.map(btn => <NavButton key={btn.title} title={btn.title} />)}
             </section>
         </section>
     )
