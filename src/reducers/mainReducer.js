@@ -22,7 +22,7 @@ const update = (list) => {
     let result = 0;
     list.forEach(item => {
         const i = Number(item.cash);
-        if (item.expenses) {
+        if (item.er === 'expenses') {
             expenses += i;
             result -= i;
         } else {
