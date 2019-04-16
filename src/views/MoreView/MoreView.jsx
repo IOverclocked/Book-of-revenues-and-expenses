@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import NavButton from '../../components/NavButton/NavButton';
 
 const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
-    const { title, date, cash, desc, er } = details;
+    const { id, title, date, cash, desc, er } = details;
 
     return (
         <section className={styles.wrapper}>
@@ -20,9 +20,10 @@ const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
             </section>
             <section className={styles.wrapper__buttons}>
                 {btns.map(btn => <NavButton key={btn.title} title={btn.title} onClick={() => {
+                    debugger
                     btn.title === 'Edit'
                         ? handleToggleModal('Edit', details)
-                        : handleDel(); handleToggleModal();
+                        : handleDel(id); handleToggleModal();
                 }} />)}
             </section>
         </section>

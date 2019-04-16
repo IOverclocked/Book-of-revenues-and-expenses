@@ -12,7 +12,6 @@ import Modal from '../../components/Modal/Modal';
 class HomeView extends Component {
     render() {
         const { toggleModalControl, handleToggleModal, result } = this.props;
-        const btns = [{ title: 'Add' }];
         const initData = { er: 'expenses' };
         return (
             <>
@@ -25,7 +24,7 @@ class HomeView extends Component {
                     <ListItemsView />
                 </section>
                 {toggleModalControl && <Modal />}
-                <AddButton onClick={() => handleToggleModal(true, 'Add', btns, initData)} />
+                <AddButton onClick={() => handleToggleModal('Add', initData)} />
             </>
         )
     }
@@ -41,8 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleToggleModal: (toggle, title, btns, initData) => {
-            dispatch(toggleModal(toggle, title, btns, initData));
+        handleToggleModal: (modalType, initData) => {
+            dispatch(toggleModal(modalType, initData));
         }
     }
 }
