@@ -20,10 +20,13 @@ const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
             </section>
             <section className={styles.wrapper__buttons}>
                 {btns.map(btn => <NavButton key={btn.title} title={btn.title} onClick={() => {
-                    debugger
-                    btn.title === 'Edit'
-                        ? handleToggleModal('Edit', details)
-                        : handleDel(id); handleToggleModal();
+                    if (btn.title === 'Edit') {
+                        handleToggleModal();
+                        handleToggleModal('Edit', details);
+                    } else {
+                        handleDel(id);
+                        handleToggleModal();
+                    }
                 }} />)}
             </section>
         </section>

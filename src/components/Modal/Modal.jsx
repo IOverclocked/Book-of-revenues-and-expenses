@@ -38,7 +38,6 @@ class Modal extends Component {
 }
 
 const mapStateToProps = (state) => {
-    debugger
     const { view } = state;
     return {
         headerTitle: view.modal.title,
