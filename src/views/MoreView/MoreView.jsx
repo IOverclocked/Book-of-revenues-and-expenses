@@ -15,10 +15,10 @@ const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
                     <span className={styles.cash}>{cash}</span>
                 </h3>
             </header>
-            <section className={styles.desc}>
+            <article className={styles.desc}>
                 {desc}
-            </section>
-            <section className={styles.wrapper__buttons}>
+            </article>
+            <div className={styles.wrapper__buttons}>
                 {btns.map(btn => <NavButton key={btn.title} title={btn.title} onClick={() => {
                     if (btn.title === 'Edit') {
                         handleToggleModal();
@@ -28,7 +28,7 @@ const MoreView = ({ details, btns, handleToggleModal, handleDel }) => {
                         handleToggleModal();
                     }
                 }} />)}
-            </section>
+            </div>
         </section>
     )
 }

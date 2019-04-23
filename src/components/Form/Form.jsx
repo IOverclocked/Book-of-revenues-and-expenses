@@ -80,14 +80,14 @@ class Form extends Component {
 
                     <Field tag="textarea" name="desc" label="Description" maxLength="400" component={Input} />
 
-                    <section className={styles.radios}>
+                    <div className={styles.radios}>
                         <Field name="er" label="Expenses" props={{ value: "expenses", name: 'er' }} component={Radio} />
                         <Field name="er" label="Revenues" props={{ value: "revenues", name: 'er' }} component={Radio} />
-                    </section>
+                    </div>
 
-                    <section className={styles.btns}>
+                    <div className={styles.btns}>
                         {btns.map(btn => <NavButton type="submit" key={btn.title} title={btn.title} />)}
-                    </section>
+                    </div>
                 </form>
             </div>
         )
