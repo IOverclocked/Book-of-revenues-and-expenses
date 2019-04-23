@@ -28,22 +28,22 @@
 //types nav buttons
 .wrapper__revenues {
     @extend .navButton;
-    border-color: $revenues65AlfaColor;
+    border-color: map-get($revenuesColors, "65");
 
     &:hover,
     &:active {
-        background: $revenues65AlfaColor;
+        background: map-get($revenuesColors, "65");
         color: $whiteColor;
     }
 }
 
 .wrapper__expenses {
     @extend .navButton;
-    border-color: $expenses65AlfaColor;
+    border-color: map-get($expensesColors, "65");
 
     &:hover,
     &:active {
-        background: $expenses65AlfaColor;
+        background: map-get($expensesColors, "65");
         color: $whiteColor;
     }
 }
@@ -59,5 +59,3 @@
         color: $primaryColor;
     }
 }
-
-

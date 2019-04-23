@@ -21,12 +21,12 @@
 
 .wrapper__expenses {
     @extend .__wrapper;
-    border-color: $expenses65AlfaColor;
+    border-color: map-get($expensesColors, "65");
 }
 
 .wrapper__revenues {
     @extend .__wrapper;
-    border-color: $revenues65AlfaColor;
+    border-color: map-get($revenuesColors, "65");
 }
 
 .wrapper__buttons {

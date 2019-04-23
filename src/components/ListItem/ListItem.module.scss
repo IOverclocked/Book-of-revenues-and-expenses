@@ -14,11 +14,11 @@
 }
 
 .expenses {
-    background: $expenses65AlfaColor;
+    background: map-get($expensesColors, "65");
 }
 
 .revenues {
-    background: $revenues65AlfaColor;
+    background: map-get($revenuesColors, "65");
 }
 
 .section__nav {
