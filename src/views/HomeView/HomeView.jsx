@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal } from '../../actions/actions';
+import { toggleModal, toggleSideMenu } from '../../actions/actions';
 import styles from './HomeView.module.scss';
 import Logo from '../../components/Logo/Logo';
 import Hamburger from '../../components/Hamburger/Hamburger';
@@ -12,14 +12,23 @@ import MenuView from '../MenuView/MenuView';
 
 class HomeView extends Component {
     render() {
-        const { toggleModalControl, handleToggleModal, result } = this.props;
+        const {
+            toggleModalControl,
+            toggleSideMenuControl,
+            handleToggleSideMenu,
+            handleToggleModal,
+            result
+        } = this.props;
+
         const initData = { er: 'expenses' };
         return (
             <>
-                <MenuView />
+                <MenuView toggleSideMenuControl={toggleSideMenuControl} />
                 <header className={styles.header}>
                     <Logo />
-                    <Hamburger />
+                    <Hamburger
+                        toggleSideMenuControl={toggleSideMenuControl}
+                        handleToggleSideMenu={handleToggleSideMenu} />
                 </header>
                 <section className={styles.main}>
                     <StateView result={result} />
@@ -36,7 +45,8 @@ const mapStateToProps = (state) => {
     const { main, view } = state;
     return {
         result: main.result,
-        toggleModalControl: view.modal.toggle
+        toggleModalControl: view.modal.toggle,
+        toggleSideMenuControl: view.sideMenu.toggle
     }
 }
 
@@ -44,6 +54,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleToggleModal: (modalType, initData) => {
             dispatch(toggleModal(modalType, initData));
+        },
+        handleToggleSideMenu: () => {
+            dispatch(toggleSideMenu());
         }
     }
 }

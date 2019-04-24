@@ -9,13 +9,32 @@
     z-index: 1;
 }
 
+.wrapper__open {
+    @extend .wrapper;
+    visibility: visible;
+}
+
+.wrapper__close {
+    @extend .wrapper;
+    visibility: hidden;
+}
+
 .menu {
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
-    width: 60%;
     transition: 150ms ease-in-out;
     background: $primaryColor;
     box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
+}
+
+.menu__open {
+    @extend .menu;
+    width: 60%;
+}
+
+.menu__close {
+    @extend .menu;
+    width: 0%;
 }

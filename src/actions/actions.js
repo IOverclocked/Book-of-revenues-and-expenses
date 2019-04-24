@@ -52,7 +52,7 @@ export const toggleNavigation = (id) => {
     }
 }
 
-export const toggleSiteMenu = () => {
+export const toggleSideMenu = () => {
     return {
         type: TOGGLE_SIDE_MENU
     }

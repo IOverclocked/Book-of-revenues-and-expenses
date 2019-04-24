@@ -1,26 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react';
 import styles from './Hamburger.module.scss';
 
-export class Hamburger extends Component {
-    state = {
-        isOpen: false
-    }
+const { focus, base } = styles;
 
-    toggleMenu = () => {
-        this.setState({ isOpen: !this.state.isOpen });
-    }
-
-    render() {
-        const { isOpen } = this.state;
-        const { focus, base } = styles;
-        return (
-            <div className={styles.wrapper} onClick={this.toggleMenu}>
-                <span className={isOpen ? focus : base}></span>
-                <span className={isOpen ? focus : base}></span>
-                <span className={isOpen ? focus : base}></span>
-            </div>
-        )
-    }
-}
+const Hamburger = ({ handleToggleSideMenu, toggleSideMenuControl }) => (
+    <div className={styles.wrapper} onClick={handleToggleSideMenu}>
+        <span className={toggleSideMenuControl ? focus : base}></span>
+        <span className={toggleSideMenuControl ? focus : base}></span>
+        <span className={toggleSideMenuControl ? focus : base}></span>
+    </div>
+)
 
 export default Hamburger;
