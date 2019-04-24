@@ -8,6 +8,7 @@ import StateView from '../StateView/StateView';
 import AddButton from '../../components/AddButton/AddButton';
 import ListItemsView from '../ListItemsView/ListItemsView';
 import Modal from '../../components/Modal/Modal';
+import MenuView from '../MenuView/MenuView';
 
 class HomeView extends Component {
     render() {
@@ -15,6 +16,7 @@ class HomeView extends Component {
         const initData = { er: 'expenses' };
         return (
             <>
+                <MenuView />
                 <header className={styles.header}>
                     <Logo />
                     <Hamburger />

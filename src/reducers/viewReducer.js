@@ -11,6 +11,9 @@ const initState = {
     navigation: {
         id: '',
         open: false
+    },
+    sideMenu: {
+        toggle: false
     }
 }
 
@@ -64,6 +67,15 @@ const toggleModal = (state, action) => {
     }
 }
 
+const toggleSideMenu = (state) => {
+    return {
+        ...state,
+        sideMenu: {
+            toggle: !state.sideMenu.toggle
+        }
+    }
+}
+
 const toggleNavigation = (state, action) => {
     return {
         ...state,
@@ -82,6 +94,8 @@ const view = (state = initState, action) => {
             return toggleModal(state, action);
         case 'TOGGLE_NAVIGATION':
             return toggleNavigation(state, action);
+        case 'TOGGLE_SIDE_MENU':
+            return toggleSideMenu(state);
         default:
             return state;
     }

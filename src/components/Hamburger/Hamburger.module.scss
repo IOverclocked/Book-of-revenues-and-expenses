@@ -2,6 +2,7 @@
 
 .wrapper {
     cursor: pointer;
+    z-index: 100;
     margin: 20px 20px;
     width: 35px;
     height: 25px;
@@ -12,11 +13,12 @@
     position: absolute;
     width: 35px;
     height: 1px;
-    border: 2px solid $primaryColor;
+    border: 2px solid $whiteColor;
 }
 
 .base {
     @extend .line;
+    border-color: $primaryColor;
 
     &:nth-of-type(1) {
         top: 20px;

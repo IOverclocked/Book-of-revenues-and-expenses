@@ -29,6 +29,7 @@ export const edit = (id, newItem) => {
 const START_APP = 'START_APP';
 const TOGGLE_MODAL = 'TOGGLE_MODAL';
 const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
+const TOGGLE_SIDE_MENU = 'TOGGLE_SIDE_MENU';
 
 export const startApp = () => {
     return {
@@ -48,5 +49,11 @@ export const toggleNavigation = (id) => {
     return {
         type: TOGGLE_NAVIGATION,
         id
+    }
+}
+
+export const toggleSiteMenu = () => {
+    return {
+        type: TOGGLE_SIDE_MENU
     }
 }

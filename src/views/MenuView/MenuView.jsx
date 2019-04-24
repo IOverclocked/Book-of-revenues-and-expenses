@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import styles from './MenuView.module.scss';
+// import PropTypes from 'prop-types';
 
-export class MenuView extends Component {
-    static propTypes = {
+const MenuView = () => (
+    <div className={styles.wrapper}>
+        <nav className={styles.menu}>
+            1
+        </nav>
+    </div>
+)
 
-    }
+// MenuView.prototype = {
 
-    render() {
-        return (
-            <div>
+// }
 
-            </div>
-        )
-    }
-}
-
-export default MenuView
+export default MenuView;
