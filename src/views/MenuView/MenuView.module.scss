@@ -10,6 +10,47 @@
     background: $little20AlfaShadowColor;
 }
 
+.wrapper__icons {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    &:first-child {
+        color: $whiteColor;
+        transition: 2000ms ease-out;
+    }
+    &:last-child {
+        left: 30px;
+        color: $primaryDarkColor;
+        transition: 3000ms ease-out;
+    }
+}
+
+.icon__close {
+    @extend .icon;
+    font-size: 0em !important;
+    visibility: hidden;
+    &:first-child {
+        transform: rotate(100deg);
+    }
+    &:last-child {
+        transform: rotate(0deg);
+    }
+}
+
+.icon__open {
+    @extend .icon;
+    font-size: 5em !important;
+    visibility: visible;
+    &:first-child {
+        transform: rotate(-10deg);
+    }
+    &:last-child {
+        transform: rotate(30deg);
+    }
+}
+
 .wrapper__open {
     @extend .wrapper;
     visibility: visible;
