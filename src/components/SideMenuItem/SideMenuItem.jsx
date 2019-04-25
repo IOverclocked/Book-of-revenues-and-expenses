@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './SideMenuItem.module.scss';
 
-const SideMenuItem = () => (
-    <li>
-        {/* todo => list items menu */}
+const SideMenuItem = ({ content }) => (
+    <li className={styles.wrapper}>
+        {content}
     </li>
 )
 

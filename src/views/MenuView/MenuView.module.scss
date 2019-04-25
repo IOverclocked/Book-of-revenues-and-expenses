@@ -1,7 +1,7 @@
 @import "../../styles/imports.scss";
 
 .wrapper {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
@@ -79,4 +79,9 @@
 .menu__close {
     @extend .menu;
     width: 0%;
+}
+
+.wrapper__list {
+    margin: 6em 0 0 0;
+    list-style-type: none;
 }

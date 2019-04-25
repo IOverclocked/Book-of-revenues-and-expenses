@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './MenuView.module.scss';
 import Money from '@material-ui/icons/AttachMoney';
+import SideMenuItem from '../../components/SideMenuItem/SideMenuItem';
 // import PropTypes from 'prop-types';
 
 const {
@@ -11,7 +12,10 @@ const {
     wrapper__icons,
     icon__close,
     icon__open,
+    wrapper__list
 } = styles;
+
+const menuList = ['Home', 'Details', 'Above as'];
 
 const MenuView = ({ toggleSideMenuControl: isOpen }) => (
     <div className={isOpen ? wrapper__open : wrapper__close}>
@@ -20,6 +24,12 @@ const MenuView = ({ toggleSideMenuControl: isOpen }) => (
                 <Money className={isOpen ? icon__open : icon__close} />
                 <Money className={isOpen ? icon__open : icon__close} />
             </header>
+            <ul className={wrapper__list}>
+                {
+                    menuList.map(item => <SideMenuItem key={item} content={item} />)
+
+                }
+            </ul>
         </nav>
     </div>
 )
