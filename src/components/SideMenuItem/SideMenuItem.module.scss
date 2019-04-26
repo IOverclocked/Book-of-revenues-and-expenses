@@ -4,7 +4,6 @@
     width: 100%;
     font-family: $primaryFont;
     background: $whiteColor;
-    color: $primaryLittleDarkColor;
     border-bottom: 6px solid $primaryLittleDarkColor;
     border-left: 2px solid $primaryLittleDarkColor;
     text-align: center;
@@ -18,5 +17,16 @@
     &:focus,
     &:active {
         border-left: 18px solid $primaryLittleDarkColor;
+    }
+}
+
+.link {
+    text-decoration: none;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+        color: $primaryLittleDarkColor;
     }
 }

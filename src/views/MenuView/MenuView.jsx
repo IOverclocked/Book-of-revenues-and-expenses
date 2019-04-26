@@ -15,7 +15,7 @@ const {
     wrapper__list
 } = styles;
 
-const menuList = ['Home', 'Details', 'Above as'];
+const menuList = ['Home', 'Details', 'Above'];
 
 const MenuView = ({ toggleSideMenuControl: isOpen }) => (
     <div className={isOpen ? wrapper__open : wrapper__close}>
