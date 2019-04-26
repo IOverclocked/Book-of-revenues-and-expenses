@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toggleModal, toggleSideMenu } from '../../actions/actions';
 import styles from './HomeView.module.scss';
-import Logo from '../../components/Logo/Logo';
-import Hamburger from '../../components/Hamburger/Hamburger';
+import Header from '../../components/Header/Header';
 import StateView from '../StateView/StateView';
 import AddButton from '../../components/AddButton/AddButton';
 import ListItemsView from '../ListItemsView/ListItemsView';
@@ -24,12 +23,7 @@ class HomeView extends Component {
         return (
             <>
                 <MenuView toggleSideMenuControl={toggleSideMenuControl} />
-                <header className={styles.header}>
-                    <Logo />
-                    <Hamburger
-                        toggleSideMenuControl={toggleSideMenuControl}
-                        handleToggleSideMenu={handleToggleSideMenu} />
-                </header>
+                <Header handleToggleSideMenu={handleToggleSideMenu} toggleSideMenuControl={toggleSideMenuControl} />
                 <section className={styles.main}>
                     <StateView result={result} />
                     <ListItemsView />

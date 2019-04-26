@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AboveView.modules.scss';
+import styles from './AboveView.module.scss';
 
 function AboveView() {
     return (

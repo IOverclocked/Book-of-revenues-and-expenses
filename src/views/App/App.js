@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { startApp } from '../../actions/actions';
+import PropTypes from 'prop-types';
 import StartView from '../StartView/StartView';
 import HomeView from '../HomeView/HomeView';
+import AboveView from '../AboveView/AboveView';
 import './App.module.scss';
 
 class App extends Component {
@@ -18,14 +19,15 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <>
+                    {/* <Switch> */}
                     {
                         startViewIsOpen
-                            ? <Route path="/" render={(props) => <StartView {...props} handleStartApp={handleStartApp} />} />
-                            : <Route path="/" component={HomeView} />
+                            ? <Route exact path="/" render={(props) => <StartView {...props} handleStartApp={handleStartApp} />} />
+                            : <Route exact path="/" component={HomeView} />
                     }
-                    <Switch>
-                        {/* todo */}
-                    </Switch>
+
+                    <Route path="/above" component={AboveView} />
+                    {/* </Switch> */}
                 </>
             </BrowserRouter>
         );
@@ -41,8 +43,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleStartApp: () => { 
-            dispatch(startApp()) 
+        handleStartApp: () => {
+            dispatch(startApp())
         }
     };
 }
