@@ -1,18 +1,16 @@
 import React from 'react';
 import styles from './DetailsView.module.scss';
-import PropTypes from 'prop-types';
+import Header from '../../components/Header/Header';
 
 function DetailsView(props) {
     return (
-        <div>
+        <div className={styles.wrapper}>
+            <Header />
             Details
         </div>
     )
 }
 
-DetailsView.propTypes = {
-
-}
 
 export default DetailsView;
 
