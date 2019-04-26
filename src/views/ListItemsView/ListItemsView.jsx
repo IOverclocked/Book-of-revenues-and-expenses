@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { toggleNavigation, toggleModal, del } from '../../actions/actions';
 import styles from './ListItemsView.module.scss';
 import ListItem from '../../components/ListItem/ListItem';
+import StateLabel from '../../components/StateLabel/StateLabel';
 
 export class ListItemsView extends Component {
     //default hidden
@@ -80,21 +81,24 @@ export class ListItemsView extends Component {
     }
 
     render() {
-        const { list } = this.props;
+        const { list, result } = this.props;
         return (
-            <ul className={styles.wrapper}>
-                {
-                    list.map(item => {
-                        return (
-                            <ListItem
-                                id={item.id}
-                                key={item.id}
-                                item={item}
-                                onClick={(e) => this.handleClickOnItem(e, item.id)}
-                            />)
-                    })
-                }
-            </ul>
+            <>
+                <StateLabel result={result} />
+                <ul className={styles.wrapper}>
+                    {
+                        list.map(item => {
+                            return (
+                                <ListItem
+                                    id={item.id}
+                                    key={item.id}
+                                    item={item}
+                                    onClick={(e) => this.handleClickOnItem(e, item.id)}
+                                />)
+                        })
+                    }
+                </ul>
+            </>
         )
     }
 }
@@ -103,7 +107,8 @@ const mapStateToProps = (state) => {
     const { view, main } = state;
     return {
         list: main.list,
-        navigation: view.navigation
+        navigation: view.navigation,
+        result: main.result,
     }
 }
 

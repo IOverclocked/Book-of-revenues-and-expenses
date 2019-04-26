@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './StateView.module.scss';
+import styles from './StateLabel.module.scss';
 
-const StateView = ({ result }) => (
+const StateLabel = ({ result }) => (
     <div className={styles.wrapper}>
         <div className={styles.circle__wrapper}>
             <div className={styles.cashState}>{result}</div>
@@ -9,4 +9,4 @@ const StateView = ({ result }) => (
     </div>
 )
 
-export default StateView;
+export default StateLabel;

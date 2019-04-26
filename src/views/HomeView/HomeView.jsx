@@ -1,46 +1,59 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, toggleSideMenu } from '../../actions/actions';
-import styles from './HomeView.module.scss';
+import { toggleModal, toggleSideMenu, startApp } from '../../actions/actions';
+import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
-import StateView from '../StateView/StateView';
 import AddButton from '../../components/AddButton/AddButton';
 import ListItemsView from '../ListItemsView/ListItemsView';
+import StartView from '../StartView/StartView';
 import Modal from '../../components/Modal/Modal';
 import MenuView from '../MenuView/MenuView';
 
 class HomeView extends Component {
+    static propTypes = {
+        toggleModalControl: PropTypes.bool.isRequired,
+        toggleSideMenuControl: PropTypes.bool.isRequired,
+        startViewIsOpen: PropTypes.bool.isRequired,
+        handleToggleSideMenu: PropTypes.func.isRequired,
+        handleToggleModal: PropTypes.func.isRequired,
+        handleStartApp: PropTypes.func.isRequired
+    }
+
     render() {
         const {
             toggleModalControl,
             toggleSideMenuControl,
             handleToggleSideMenu,
             handleToggleModal,
-            result
+            startViewIsOpen,
+            handleStartApp
         } = this.props;
 
         const initData = { er: 'expenses' };
         return (
             <>
-                <MenuView toggleSideMenuControl={toggleSideMenuControl} />
-                <Header handleToggleSideMenu={handleToggleSideMenu} toggleSideMenuControl={toggleSideMenuControl} />
-                <section className={styles.main}>
-                    <StateView result={result} />
-                    <ListItemsView />
-                </section>
-                {toggleModalControl && <Modal />}
-                <AddButton onClick={() => handleToggleModal('Add', initData)} />
+                {
+                    startViewIsOpen
+                        ? <StartView handleStartApp={handleStartApp} />
+                        : <>
+                            <Header handleToggleSideMenu={handleToggleSideMenu} toggleSideMenuControl={toggleSideMenuControl} />
+                            <MenuView toggleSideMenuControl={toggleSideMenuControl} />
+                            <ListItemsView />
+                            <AddButton onClick={() => handleToggleModal('Add', initData)} />
+                            {toggleModalControl && <Modal />}
+                        </>
+                }
             </>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const { main, view } = state;
+    const { view } = state;
     return {
-        result: main.result,
         toggleModalControl: view.modal.toggle,
-        toggleSideMenuControl: view.sideMenu.toggle
+        toggleSideMenuControl: view.sideMenu.toggle,
+        startViewIsOpen: view.start.open
     }
 }
 
@@ -51,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleToggleSideMenu: () => {
             dispatch(toggleSideMenu());
+        },
+        handleStartApp: () => {
+            dispatch(startApp())
         }
     }
 }
