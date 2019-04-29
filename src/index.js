@@ -9,4 +9,9 @@ ReactDOM.render(
         <App />
     </Provider>,
     document.getElementById('root')
+<<<<<<< HEAD
 )
+=======
+);
+
+>>>>>>> parent of 3a98016... Deleted index.js
