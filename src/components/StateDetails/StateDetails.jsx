@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './StateDetails.module.scss';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-function StateDetails({ ...props }) {
+const StateDetails = ({ ...props }) => {
     return (
         <div className={styles.wrapper}>
             <section className={styles.state}>

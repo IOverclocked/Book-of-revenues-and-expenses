@@ -15,7 +15,7 @@ function Header({ toggleSideMenuControl, handleToggleSideMenu }) {
             <Hamburger
                 toggleSideMenuControl={toggleSideMenuControl}
                 handleToggleSideMenu={handleToggleSideMenu} />
-            <SideMenu toggleSideMenuControl={toggleSideMenuControl} />
+            {/* <SideMenu toggleSideMenuControl={toggleSideMenuControl} /> */}
         </header>
     )
 }
