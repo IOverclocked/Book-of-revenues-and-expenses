@@ -29,7 +29,7 @@ class Form extends Component {
         return `${d}/${m}/${y}`;
     }
 
-    handleAddSubmit = async (formData) => {
+    handleAddSubmit = (formData) => {
         const { handleAdd, handleToggleModal } = this.props;
         const newItem = {
             id: uuid.v1(),
@@ -37,11 +37,11 @@ class Form extends Component {
         }
         newItem.cash = Number(newItem.cash);
         newItem.date = !newItem.date ? this.getTodayDate() : newItem.date;
-        await handleAdd({ ...newItem });
+        handleAdd({ ...newItem });
         handleToggleModal();
     }
 
-    handleEditSubmit = async (formData) => {
+    handleEditSubmit = (formData) => {
         const { handleEdit, handleToggleModal } = this.props;
         handleEdit(formData.id, formData);
         handleToggleModal();
