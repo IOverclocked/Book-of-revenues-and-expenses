@@ -1,56 +1,56 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 .wrapper {
-    position: absolute;
-    top: 3.5em;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2em;
-    color: $primaryFontColor;
-    font-family: $primaryFont;
+  position: absolute;
+  top: 3.5em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2em;
+  color: $primaryFontColor;
+  font-family: $primaryFont;
 }
 
 //abstract class;
 .__wrapper {
-    @include flex(center, space-between);
-    margin: 0 0 1em 0;
-    padding: 0 0 1em 0;
-    border-bottom: 2px solid;
+  @include flex(center, space-between);
+  margin: 0 0 1em 0;
+  padding: 0 0 1em 0;
+  border-bottom: 2px solid;
 }
 
 .wrapper__expenses {
-    @extend .__wrapper;
-    border-color: map-get($expensesColors, "65");
+  @extend .__wrapper;
+  border-color: map-get($expensesColors, '65');
 }
 
 .wrapper__revenues {
-    @extend .__wrapper;
-    border-color: map-get($revenuesColors, "65");
+  @extend .__wrapper;
+  border-color: map-get($revenuesColors, '65');
 }
 
 .wrapper__buttons {
-    @include flex(center, flex-start);
-    position: absolute;
-    bottom: 0;
-    right: 10%;
-    width: 60%;
+  @include flex(center, flex-start);
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  width: 60%;
 }
 
 .title {
-    font-size: 28px;
-    margin: 0 0 0.5em 0;
+  font-size: 28px;
+  margin: 0 0 0.5em 0;
 }
 
 .date {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .cash {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .desc {
-    font-size: 18px;
-    word-wrap: break-word;
+  font-size: 18px;
+  word-wrap: break-word;
 }

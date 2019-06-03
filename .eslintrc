@@ -1,7 +1,18 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
+  "env": {
+    "jest": true
+  },
   "rules": {
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "required": {
+          "every": ["id"]
+        }
+      }
+    ],
+    "react/button-has-type": 0,
     "linebreak-style": ["error", "windows"],
     "react/jsx-filename-extension": [
       1,
@@ -13,5 +24,14 @@
   "globals": {
     "window": true,
     "document": true
-  }
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "parser": "babel-eslint"
 }

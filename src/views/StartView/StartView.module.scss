@@ -1,31 +1,31 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 .buttonWrapper {
-    @include flex-center;
-    height: 70vh;
-    margin: 1em 0 0 0;
-    background-color: $primaryColor;
+  @include flex-center;
+  height: 70vh;
+  margin: 1em 0 0 0;
+  background-color: $primaryColor;
 }
 
 .button {
-    width: 80vw;
-    font-family: $primaryHeaderSecondFont;
-    font-size: 26px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $primaryColor;
-    background-color: $whiteColor;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    padding: 0.4em 0.5em 0.2em;
-    box-shadow: 0 6px 0 0 $primaryLittleDark85AlfaColor;
-    cursor: pointer;
+  width: 80vw;
+  font-family: $primaryHeaderSecondFont;
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $primaryColor;
+  background-color: $whiteColor;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  padding: 0.4em 0.5em 0.2em;
+  box-shadow: 0 6px 0 0 $primaryLittleDark85AlfaColor;
+  cursor: pointer;
 
-    &:active,
-    &:hover {
-        background-color: $primaryColor;
-        border: 1px solid $whiteColor;
-        color: $whiteColor;
-    }
+  &:active,
+  &:hover {
+    background-color: $primaryColor;
+    border: 1px solid $whiteColor;
+    color: $whiteColor;
+  }
 }

@@ -1,87 +1,87 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    background: $little20AlfaShadowColor;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: $little20AlfaShadowColor;
 }
 
 .wrapper__icons {
-    position: relative;
+  position: relative;
 }
 
 .icon {
-    position: absolute;
-    &:first-child {
-        color: $whiteColor;
-        transition: 2000ms ease-out;
-    }
-    &:last-child {
-        left: 30px;
-        color: $primaryDarkColor;
-        transition: 3000ms ease-out;
-    }
+  position: absolute;
+  &:first-child {
+    color: $whiteColor;
+    transition: 2000ms ease-out;
+  }
+  &:last-child {
+    left: 30px;
+    color: $primaryDarkColor;
+    transition: 3000ms ease-out;
+  }
 }
 
 .icon__close {
-    @extend .icon;
-    font-size: 0em !important;
-    visibility: hidden;
-    &:first-child {
-        transform: rotate(100deg);
-    }
-    &:last-child {
-        transform: rotate(0deg);
-    }
+  @extend .icon;
+  font-size: 0em !important;
+  visibility: hidden;
+  &:first-child {
+    transform: rotate(100deg);
+  }
+  &:last-child {
+    transform: rotate(0deg);
+  }
 }
 
 .icon__open {
-    @extend .icon;
-    font-size: 5em !important;
-    visibility: visible;
-    &:first-child {
-        transform: rotate(-10deg);
-    }
-    &:last-child {
-        transform: rotate(30deg);
-    }
+  @extend .icon;
+  font-size: 5em !important;
+  visibility: visible;
+  &:first-child {
+    transform: rotate(-10deg);
+  }
+  &:last-child {
+    transform: rotate(30deg);
+  }
 }
 
 .wrapper__open {
-    @extend .wrapper;
-    visibility: visible;
+  @extend .wrapper;
+  visibility: visible;
 }
 
 .wrapper__close {
-    @extend .wrapper;
-    visibility: hidden;
+  @extend .wrapper;
+  visibility: hidden;
 }
 
 .menu {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    transition: 150ms ease-in-out;
-    background: $primaryColor;
-    box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: 150ms ease-in-out;
+  background: $primaryColor;
+  box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
 }
 
 .menu__open {
-    @extend .menu;
-    width: 60%;
+  @extend .menu;
+  width: 60%;
 }
 
 .menu__close {
-    @extend .menu;
-    width: 0%;
+  @extend .menu;
+  width: 0%;
 }
 
 .wrapper__list {
-    margin: 6em 0 0 0;
-    list-style-type: none;
+  margin: 6em 0 0 0;
+  list-style-type: none;
 }

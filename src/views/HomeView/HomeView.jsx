@@ -1,64 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, startApp } from '../../actions/actions';
 import PropTypes from 'prop-types';
-import Header from '../../components/Header/Header';
-import AddButton from '../../components/AddButton/AddButton';
-import ListItemsView from '../ListItemsView/ListItemsView';
-import StartView from '../StartView/StartView';
-import Modal from '../../components/Modal/Modal';
+import Header from 'components/Header/Header';
+import AddButton from 'components/AddButton/AddButton';
+import { toggleModal as actionToggleModal, startApp as actionStartApp } from 'actions/actions';
+import ListItemsView from 'views/ListItemsView/ListItemsView';
+import StartView from 'views/StartView/StartView';
+import Modal from 'components/Modal/Modal';
 
-class HomeView extends Component {
-    static propTypes = {
-        toggleModalControl: PropTypes.bool.isRequired,
-        startViewIsOpen: PropTypes.bool.isRequired,
-        handleToggleModal: PropTypes.func.isRequired,
-        handleStartApp: PropTypes.func.isRequired
-    }
+const firstInitData = { er: 'expenses' };
 
-    render() {
-        const {
-            toggleModalControl,
-            handleToggleModal,
-            startViewIsOpen,
-            handleStartApp
-        } = this.props;
+const HomeView = ({ toggleModalControl, toggleModal, startViewIsOpen, startApp }) => (
+  <>
+    {startViewIsOpen ? (
+      <StartView onClick={startApp} />
+    ) : (
+      <>
+        <Header />
+        <ListItemsView />
+        <AddButton onClick={() => toggleModal('Add', firstInitData)} />
+        {toggleModalControl && <Modal />}
+      </>
+    )}
+  </>
+);
 
-        const initData = { er: 'expenses' };
-        return (
-            <>
-                {
-                    startViewIsOpen
-                        ? <StartView handleStartApp={handleStartApp} />
-                        : <>
-                            <Header />
-                            <ListItemsView />
-                            <AddButton onClick={() => handleToggleModal('Add', initData)} />
-                            {toggleModalControl && <Modal />}
-                        </>
-                }
-            </>
-        )
-    }
-}
+HomeView.propTypes = {
+  toggleModalControl: PropTypes.bool.isRequired,
+  startViewIsOpen: PropTypes.bool.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  startApp: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = (state) => {
-    const { view } = state;
-    return {
-        toggleModalControl: view.modal.toggle,
-        startViewIsOpen: view.start.open
-    }
-}
+const mapStateToProps = ({ view }) => ({
+  toggleModalControl: view.modal.toggle,
+  startViewIsOpen: view.start.open,
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handleToggleModal: (modalType, initData) => {
-            dispatch(toggleModal(modalType, initData));
-        },
-        handleStartApp: () => {
-            dispatch(startApp())
-        }
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  toggleModal: (modalType, initData) => {
+    dispatch(actionToggleModal(modalType, initData));
+  },
+  startApp: () => {
+    dispatch(actionStartApp());
+  },
+});
 
-export default (connect(mapStateToProps, mapDispatchToProps))(HomeView);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeView);

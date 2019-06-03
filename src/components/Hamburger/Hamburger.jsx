@@ -1,14 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Hamburger.module.scss';
 
 const { focus, base } = styles;
 
-const Hamburger = ({ handleToggleSideMenu, toggleSideMenuControl }) => (
-    <div className={styles.wrapper} onClick={handleToggleSideMenu}>
-        <span className={toggleSideMenuControl ? focus : base}></span>
-        <span className={toggleSideMenuControl ? focus : base}></span>
-        <span className={toggleSideMenuControl ? focus : base}></span>
-    </div>
-)
+const Hamburger = ({ toggleSideMenuControl, ...props }) => (
+  <div className={styles.wrapper} {...props}>
+    <span className={toggleSideMenuControl ? focus : base} />
+    <span className={toggleSideMenuControl ? focus : base} />
+    <span className={toggleSideMenuControl ? focus : base} />
+  </div>
+);
+
+Hamburger.propTypes = {
+  toggleSideMenuControl: PropTypes.bool.isRequired,
+};
 
 export default Hamburger;

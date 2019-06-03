@@ -1,43 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleSideMenu } from '../../actions/actions';
 import PropTypes from 'prop-types';
+import { toggleSideMenu as actionToggleSideMenu } from 'actions/actions';
+import Logo from 'components/Logo/Logo';
+import Hamburger from 'components/Hamburger/Hamburger';
 import styles from './Header.module.scss';
-import Logo from '../Logo/Logo';
-import Hamburger from '../Hamburger/Hamburger';
-import SideMenu from '../SideMenu/SideMenu';
+// import SideMenu from '../SideMenu/SideMenu';
 
-
-function Header({ toggleSideMenuControl, handleToggleSideMenu }) {
-    return (
-        <header className={styles.wrapper}>
-            <Logo />
-            <Hamburger
-                toggleSideMenuControl={toggleSideMenuControl}
-                handleToggleSideMenu={handleToggleSideMenu} />
-            {/* <SideMenu toggleSideMenuControl={toggleSideMenuControl} /> */}
-        </header>
-    )
-}
+const Header = ({ toggleSideMenuControl, toggleSideMenu, isStartView }) => {
+  return (
+    <header className={styles.wrapper}>
+      <Logo isStartView={isStartView} />
+      <Hamburger toggleSideMenuControl={toggleSideMenuControl} onClick={toggleSideMenu} />
+      {/* <SideMenu toggleSideMenuControl={toggleSideMenuControl} /> */}
+    </header>
+  );
+};
 
 Header.propTypes = {
-    toggleSideMenuControl: PropTypes.bool.isRequired,
-    handleToggleSideMenu: PropTypes.func.isRequired
-}
+  toggleSideMenuControl: PropTypes.bool.isRequired,
+  toggleSideMenu: PropTypes.func.isRequired,
+  isStartView: PropTypes.bool.isRequired,
+};
 
-const mapStateToProps = (state) => {
-    return {
-        toggleSideMenuControl: state.view.sideMenu.toggle,
-    }
-}
+const mapStateToProps = ({ view }) => ({
+  toggleSideMenuControl: view.sideMenu.toggle,
+  isStartView: view.start.open,
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handleToggleSideMenu: () => {
-            dispatch(toggleSideMenu());
-        },
-    }
-}
+const mapDispatchToProps = dispatch => ({
+  toggleSideMenu: () => {
+    dispatch(actionToggleSideMenu());
+  },
+});
 
-export default (connect(mapStateToProps, mapDispatchToProps))(Header);
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header);
