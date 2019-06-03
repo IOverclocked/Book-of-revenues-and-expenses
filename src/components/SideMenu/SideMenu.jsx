@@ -1,40 +1,29 @@
 import React from 'react';
-import styles from './SideMenu.module.scss';
 import Money from '@material-ui/icons/AttachMoney';
-import SideMenuItem from '../SideMenuItem/SideMenuItem';
 import PropTypes from 'prop-types';
-
-const {
-    wrapper__open,
-    wrapper__close,
-    menu__open,
-    menu__close,
-    wrapper__icons,
-    icon__close,
-    icon__open,
-    wrapper__list
-} = styles;
+import styles from './SideMenu.module.scss';
+import SideMenuItem from '../SideMenuItem/SideMenuItem';
 
 const menuList = ['Home', 'Details', 'Above'];
 
 const SideMenu = ({ toggleSideMenuControl: isOpen }) => (
-    <div className={isOpen ? wrapper__open : wrapper__close}>
-        <nav className={isOpen ? menu__open : menu__close}>
-            <header className={wrapper__icons}>
-                <Money className={isOpen ? icon__open : icon__close} />
-                <Money className={isOpen ? icon__open : icon__close} />
-            </header>
-            <ul className={wrapper__list}>
-                {
-                    menuList.map(item => <SideMenuItem key={item} content={item} />)
-                }
-            </ul>
-        </nav>
-    </div>
-)
+  <div className={isOpen ? styles.wrapper__open : styles.wrapper__close}>
+    <nav className={isOpen ? styles.menu__open : styles.menu__close}>
+      <header className={styles.wrapper__icons}>
+        <Money className={isOpen ? styles.icon__open : styles.icon__close} />
+        <Money className={isOpen ? styles.icon__open : styles.icon__close} />
+      </header>
+      <ul className={styles.wrapper__list}>
+        {menuList.map(item => (
+          <SideMenuItem key={item} content={item} />
+        ))}
+      </ul>
+    </nav>
+  </div>
+);
 
-SideMenu.prototype = {
-    toggleSideMenuControl: PropTypes.bool.isRequired
-}
+SideMenu.propTypes = {
+  toggleSideMenuControl: PropTypes.bool.isRequired,
+};
 
 export default SideMenu;

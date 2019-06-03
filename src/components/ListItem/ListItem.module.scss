@@ -1,66 +1,94 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 .wrapper {
-    @include flex(center, space-between);
-    position: relative;
-    margin: 0.5em 0 0 0;
-    color: $primaryFontColor;
-    font-size: 1.2em;
-    width: 100%;
-    height: 65px;
-    box-shadow: 0 3px 2px 1px $littleShadowColor;
-    transition: 150ms ease-in-out;
-    cursor: pointer;
+  @include flex(center, space-between);
+  position: relative;
+  margin: 0.5em 0 0 0;
+  color: $primaryFontColor;
+  font-size: 1.2em;
+  width: 100%;
+  height: 65px;
+  box-shadow: 0 3px 2px 1px $littleShadowColor;
+  cursor: pointer;
+  transition: transform 150ms ease-in-out, background-color 1000ms ease-in-out;
 }
 
 .expenses {
-    background: map-get($expensesColors, "65");
+  @extend .wrapper;
+  background-color: map-get($expensesColors, '65');
 }
 
 .revenues {
-    background: map-get($revenuesColors, "65");
+  @extend .wrapper;
+  background-color: map-get($revenuesColors, '65');
+}
+
+@mixin open($color) {
+  z-index: 9999;
+  background-color: map-get($color, '1');
+  color: $whiteColor;
+  transform: translateY(30px);
+}
+
+.expenses__open {
+  @extend .expenses;
+  @include open($expensesColors);
+}
+
+.revenues__open {
+  @extend .revenues;
+  @include open($revenuesColors);
 }
 
 .section__nav {
-    @include flex(center, flex-start);
-    position: absolute;
-    visibility: hidden;
-    top: -2rem;
-    // left: -10px; //show
-    left: -1000px; //hide
-    // right: 10px; //show
-    right: none; //hide
-    transition: 150ms ease-in-out;
+  @include flex(center, flex-start);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -32px;
+  transition: transform 150ms ease-in-out;
+}
+
+.nav__open {
+  @extend .section__nav;
+  visibility: visible;
+  transform: translateX(0px);
+}
+
+.nav__close {
+  @extend .section__nav;
+  visibility: hidden;
+  transform: translateX(-1000px);
 }
 
 .section__desc {
-    height: 100%;
-    max-width: 75vw;
-    flex-grow: 4;
-    overflow: hidden;
+  height: 100%;
+  max-width: 75vw;
+  flex-grow: 4;
+  overflow: hidden;
 
-    .desc__header {
-        @include flex(center, space-between);
+  .desc__header {
+    @include flex(center, space-between);
 
-        .header__date {
-            padding: 0.5em;
-            flex-grow: 1;
-        }
-        .header__title {
-            padding: 0.5em;
-            flex-grow: 4;
-            text-align: center;
-        }
+    .header__date {
+      padding: 0.5em;
+      flex-grow: 1;
     }
-
-    .desc__desc {
-        padding: 0 0.5em;
+    .header__title {
+      padding: 0.5em;
+      flex-grow: 4;
+      text-align: center;
     }
+  }
+
+  .desc__desc {
+    padding: 0 0.5em;
+  }
 }
 
 .section__cash {
-    @include flex(center, center);
-    height: 100%;
-    flex-grow: 1;
-    font-weight: 800;
+  @include flex(center, center);
+  height: 100%;
+  flex-grow: 1;
+  font-weight: 800;
 }

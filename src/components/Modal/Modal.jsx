@@ -1,61 +1,67 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { toggleModal, del } from '../../actions/actions';
 import PropTypes from 'prop-types';
+import { toggleModal as actionToggleModal, del as actionDel } from 'actions/actions';
+import ModalHeader from 'components/ModalHeader/ModalHeader';
+import Form from 'components/Form/Form';
+import MoreView from 'views/MoreView/MoreView';
 import styles from './Modal.module.scss';
-import ModalHeader from '../ModalHeader/ModalHeader';
-import Form from '../Form/Form';
-import MoreView from '../../views/MoreView/MoreView';
 
-class Modal extends Component {
-    static propTypes = {
-        btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-        details: PropTypes.object.isRequired,
-        headerTitle: PropTypes.string.isRequired,
-        handleToggleModal: PropTypes.func.isRequired,
-        handleDel: PropTypes.func.isRequired,
-    }
+const Modal = ({ headerTitle, toggleModal, handleDel, details, btns }) => (
+  <div className={styles.modal__wrapper}>
+    <section className={styles.wrapper}>
+      <ModalHeader title={headerTitle} toggleModal={toggleModal} />
+      {headerTitle !== 'More' ? (
+        <Form />
+      ) : (
+        <MoreView details={details} btns={btns} toggleModal={toggleModal} del={handleDel} />
+      )}
+    </section>
+  </div>
+);
 
-    render() {
-        const { headerTitle, handleToggleModal, handleDel, details, btns } = this.props;
-        return (
-            <div className={styles.modal__wrapper}>
-                <section className={styles.wrapper}>
-                    <ModalHeader title={headerTitle} handleToggleModal={handleToggleModal} />
-                    {
-                        (headerTitle !== 'More')
-                            ? <Form />
-                            : <MoreView
-                                details={details}
-                                btns={btns}
-                                handleToggleModal={handleToggleModal}
-                                handleDel={handleDel} />
-                    }
-                </section>
-            </ div >
-        )
-    }
-}
+Modal.propTypes = {
+  btns: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  details: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    date: PropTypes.string,
+    cash: PropTypes.number,
+    desc: PropTypes.string,
+    er: PropTypes.string,
+  }),
+  headerTitle: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  handleDel: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = (state) => {
-    const { view } = state;
-    return {
-        headerTitle: view.modal.title,
-        btns: view.modal.btns,
-        details: view.modal.initData
-    }
-}
+Modal.defaultProps = {
+  details: {
+    id: '',
+    title: '',
+    date: '',
+    cash: '',
+    desc: '',
+    er: '',
+  },
+};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        handleToggleModal: (modalType, initData) => {
-            dispatch(toggleModal(modalType, initData))
-        },
-        handleDel: (id) => {
-            dispatch(del(id))
-        }
-    }
-}
+const mapStateToProps = ({ view }) => ({
+  headerTitle: view.modal.title,
+  btns: view.modal.btns,
+  details: view.modal.initData,
+});
 
-export default (connect(mapStateToProps, mapDispatchToProps))(Modal);
+const mapDispatchToProps = dispatch => ({
+  toggleModal: (modalType, initData) => {
+    dispatch(actionToggleModal(modalType, initData));
+  },
+  handleDel: id => {
+    dispatch(actionDel(id));
+  },
+});
 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Modal);

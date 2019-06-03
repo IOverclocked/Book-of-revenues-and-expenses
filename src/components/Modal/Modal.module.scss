@@ -1,35 +1,35 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 .modal__wrapper__hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .modal__wrapper {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 10000;
-    background: $little20AlfaShadowColor;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+  background: $little20AlfaShadowColor;
 }
 
 .wrapper {
-    position: relative;
-    width: 80%;
-    height: 550px;
-    margin: 10vh auto;
-    background: $whiteColor;
-    border: 1.5px solid $primaryColor;
-    border-radius: 20px;
-    box-shadow: 0 5px 2px 0 $littleShadowColor;
+  position: relative;
+  width: 80%;
+  height: 550px;
+  margin: 10vh auto;
+  background: $whiteColor;
+  border: 1.5px solid $primaryColor;
+  border-radius: 20px;
+  box-shadow: 0 5px 2px 0 $littleShadowColor;
 }
 
 .form {
-    width: 80%;
-    margin: 0.5em auto;
+  width: 80%;
+  margin: 0.5em auto;
 
-    .input {
-        margin: 1em 0 0 0;
-    }
+  .input {
+    margin: 1em 0 0 0;
+  }
 }

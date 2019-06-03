@@ -1,61 +1,61 @@
-@import "../../styles/imports.scss";
+@import '../../styles/imports.scss';
 
 //abstract class
 .wrapper {
-    width: 100%;
-    height: 30px;
-    border: 1px solid;
-    background: $whiteColor;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-size: 1em;
-    color: $whiteColor;
-    background: $primaryColor;
-    outline: none;
-    cursor: pointer;
-    transition: 150ms ease-in-out;
-    border-bottom-color: transparent !important;
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  background: $whiteColor;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 1em;
+  color: $whiteColor;
+  background: $primaryColor;
+  outline: none;
+  cursor: pointer;
+  transition: 150ms ease-in-out;
+  border-bottom-color: transparent !important;
 }
 
 //abstract class
 .navButton {
-    @extend .wrapper;
-    margin: 2px;
-    color: $primaryFontColor;
-    background: $whiteColor;
+  @extend .wrapper;
+  margin: 2px;
+  color: $primaryFontColor;
+  background: $whiteColor;
 }
 
 //types nav buttons
 .wrapper__revenues {
-    @extend .navButton;
-    border-color: map-get($revenuesColors, "65");
+  @extend .navButton;
+  border-color: map-get($revenuesColors, '1');
 
-    &:hover,
-    &:active {
-        background: map-get($revenuesColors, "65");
-        color: $whiteColor;
-    }
+  &:hover,
+  &:active {
+    background: map-get($revenuesColors, '1');
+    color: $whiteColor;
+  }
 }
 
 .wrapper__expenses {
-    @extend .navButton;
-    border-color: map-get($expensesColors, "65");
+  @extend .navButton;
+  border-color: map-get($expensesColors, '1');
 
-    &:hover,
-    &:active {
-        background: map-get($expensesColors, "65");
-        color: $whiteColor;
-    }
+  &:hover,
+  &:active {
+    background: map-get($expensesColors, '1');
+    color: $whiteColor;
+  }
 }
 
 //buttons for modal window
 .confirmButton {
-    @extend .wrapper;
+  @extend .wrapper;
 
-    &:hover,
-    &:active {
-        border-color: $primaryColor;
-        background: $whiteColor;
-        color: $primaryColor;
-    }
+  &:hover,
+  &:active {
+    border-color: $primaryColor;
+    background: $whiteColor;
+    color: $primaryColor;
+  }
 }
