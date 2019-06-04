@@ -25,7 +25,6 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  transition: 50ms ease-in-out;
 
   &:hover {
     border-color: $primaryDarkColor;
@@ -37,17 +36,16 @@
   height: 15px;
   border-radius: 50%;
   visibility: hidden;
-  transition: 50ms ease-in-out;
 }
 
 .circle__expenses {
   @extend .circle__in;
-  background: map-get($expensesColors, '65');
+  background: map-get($expensesColors, '1');
 }
 
 .circle__revenues {
   @extend .circle__in;
-  background: map-get($revenuesColors, '65');
+  background: map-get($revenuesColors, '1');
 }
 
 .input:checked + .circle__out > .circle__in {

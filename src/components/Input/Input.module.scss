@@ -13,7 +13,7 @@
   position: absolute;
   z-index: -1;
   top: 30px;
-  transition: 150ms ease-in-out;
+  transition: transform 150ms ease-in-out, font-size 150ms ease-in-out, opacity 150ms ease-in-out;
 }
 
 .feedback {
@@ -22,9 +22,14 @@
 
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
-  top: 5px;
+  transform: translateY(-25px);
   font-size: 0.8em;
   opacity: 0.8;
+}
+
+.textarea:focus + .label,
+.textarea:not(:placeholder-shown) + .label {
+  transform: translateY(-30px);
 }
 
 .input {
