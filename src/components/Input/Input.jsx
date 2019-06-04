@@ -27,9 +27,12 @@ const setWrapperClassName = tag => {
   return styles.wrapper;
 };
 
-const Input = ({ tag: Tag, type, name, label, ...props }) => (
+const Input = ({ tag: Tag, type, name, label, onChange, value, ...props }) => (
   <div className={setWrapperClassName(Tag)}>
     <Tag
+      name={name}
+      value={value}
+      onChange={onChange}
       className={setInputClassName(Tag)}
       onFocus={e => checkIsTextarea(e, Tag, type)}
       onBlur={e => checkIsTextarea(e, Tag, 'text')}
@@ -45,8 +48,10 @@ const Input = ({ tag: Tag, type, name, label, ...props }) => (
 Input.propTypes = {
   tag: PropTypes.oneOf(['input', 'textarea']),
   type: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   maxLength: PropTypes.string,
 };
 
@@ -54,7 +59,7 @@ Input.defaultProps = {
   tag: 'input',
   type: 'text',
   maxLength: '50',
-  name: '',
+  value: '',
 };
 
 export default Input;
