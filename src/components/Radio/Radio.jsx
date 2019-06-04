@@ -2,41 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Radio.module.scss';
 
-const setCircleInClassName = value => {
-  if (value === 'expenses') {
-    return styles.circle__expenses;
-  }
-  return styles.circle__revenues;
-};
+const setCircleInClassName = name =>
+  name === 'expenses' ? styles.circle__expenses : styles.circle__revenues;
 
-// todo napisać nowy radio button
-
-const Radio = ({ input, name, label, value }) => (
-  <label className={styles.wrapper} htmlFor={name}>
+const Radio = ({ field: { name, value, onChange, onBlur }, id, label, ...props }) => (
+  <label className={styles.wrapper} htmlFor={id}>
     <input
-      {...input}
+      id={id}
       name={name}
-      type="Radio"
-      label={label}
-      value={value}
-      checked={value === input.value}
+      type="radio"
+      value={id}
+      onChange={onChange}
+      onBlur={onBlur}
+      checked={id === value}
       className={styles.input}
+      {...props}
     />
     <div className={styles.circle__out}>
-      <div className={setCircleInClassName(value)} />
+      <div className={setCircleInClassName(id)} />
     </div>
     <span className={styles.label}>&nbsp;{label}</span>
   </label>
 );
 
 Radio.propTypes = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  input: PropTypes.shape({
+  field: PropTypes.shape({
     name: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
   }).isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default Radio;

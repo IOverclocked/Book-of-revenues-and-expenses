@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { Formik, ErrorMessage, Field } from 'formik';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import {
@@ -27,8 +27,6 @@ class Form extends Component {
     add: PropTypes.func.isRequired,
     toggleModal: PropTypes.func.isRequired,
     edit: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    initialize: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
   };
 
@@ -73,66 +71,111 @@ class Form extends Component {
     toggleModal();
   };
 
-  submit = fromData => {
+  submit = formData => {
     const { title } = this.props;
     switch (title) {
       case 'Add':
-        this.addSubmit(fromData);
+        this.addSubmit(formData);
         break;
       case 'Edit':
-        this.editSubmit(fromData);
+        this.editSubmit(formData);
         break;
       default:
         break;
     }
   };
 
-  componentDidMount = () => {
-    const { initData, initialize } = this.props;
-    initialize(initData);
+  validate = formData => {
+    const { title, cash, desc } = formData;
+    const errors = {};
+    const cashReg = /^\$?(\d{1,7})(\.\d{1,2})?$/;
+
+    errors.title = !title ? 'This field is required' : '';
+    errors.desc = !desc ? 'This field is required' : '';
+
+    if (!cash) {
+      errors.cash = 'This field is required';
+    } else if (!cashReg.test(cash)) {
+      errors.cash = "This format isn't correct";
+    }
+
+    return errors;
   };
 
   render() {
-    const { btns, handleSubmit } = this.props;
+    const { btns, initData } = this.props;
+
     return (
       <div className={styles.wrapper}>
-        <form onSubmit={handleSubmit(this.submit)}>
-          <Field
-            tag="input"
-            type="text"
-            name="title"
-            label="Title"
-            maxLength="10"
-            component={Input}
-          />
+        <Formik
+          initialValues={initData || { title: '', date: '', cash: '', desc: '', er: '' }}
+          // validate={values => this.validate(values)}
+          // todo jutro zrobić walidację
+          onSubmit={values => this.submit(values)}
+        >
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <Input
+                name="title"
+                label="Title"
+                maxLength="20"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <ErrorMessage name="title" component="div" />
+              <Input
+                name="date"
+                label="Date"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.date}
+              />
+              <Input
+                name="cash"
+                label="Cash"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.cash}
+              />
+              <ErrorMessage name="cash" component="div" />
+              <Input
+                tag="textarea"
+                name="desc"
+                label="Description"
+                maxLength="400"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.desc}
+              />
+              <ErrorMessage name="textarea" component="div" />
 
-          <Field tag="input" type="date" name="date" label="Date" component={Input} />
-
-          <Field tag="input" type="text" name="cash" label="Cash" component={Input} />
-
-          <Field tag="textarea" name="desc" label="Description" maxLength="400" component={Input} />
-
-          <div className={styles.radios}>
-            <Field
-              name="er"
-              label="Expenses"
-              props={{ value: 'expenses', name: 'er' }}
-              component={Radio}
-            />
-            <Field
-              name="er"
-              label="Revenues"
-              props={{ value: 'revenues', name: 'er' }}
-              component={Radio}
-            />
-          </div>
-
-          <div className={styles.btns}>
-            {btns.map(btn => (
-              <NavButton type="submit" key={btn.title} title={btn.title} />
-            ))}
-          </div>
-        </form>
+              <div className={styles.radios}>
+                <Field
+                  id="expenses"
+                  name="er"
+                  label="Expenses"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  component={Radio}
+                />
+                <Field
+                  id="revenues"
+                  name="er"
+                  label="Revenues"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  component={Radio}
+                />
+              </div>
+              <div className={styles.btns}>
+                {btns.map(btn => (
+                  <NavButton type="submit" key={btn.title} title={btn.title} />
+                ))}
+              </div>
+            </form>
+          )}
+        </Formik>
       </div>
     );
   }
@@ -157,29 +200,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const validate = formData => {
-  const { title, cash, desc } = formData;
-  const errors = {};
-  const cashReg = /^\$?(\d{1,7})(\.\d{1,2})?$/;
-
-  errors.title = !title ? 'This field is required' : '';
-  errors.desc = !desc ? 'This field is required' : '';
-
-  if (!cash) {
-    errors.cash = 'This field is required';
-  } else if (!cashReg.test(cash)) {
-    errors.cash = "This format isn't correct";
-  }
-
-  return errors;
-};
-
-export default reduxForm({
-  form: 'form',
-  validate,
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Form),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Form);
