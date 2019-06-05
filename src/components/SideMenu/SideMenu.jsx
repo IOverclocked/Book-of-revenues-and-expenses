@@ -1,12 +1,12 @@
 import React from 'react';
 import Money from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
+import SideMenuItem from 'components/SideMenuItem/SideMenuItem';
 import styles from './SideMenu.module.scss';
-import SideMenuItem from '../SideMenuItem/SideMenuItem';
 
 const menuList = ['Home', 'Details', 'Above'];
 
-const SideMenu = ({ toggleSideMenuControl: isOpen }) => (
+const SideMenu = ({ toggleSideMenuControl: isOpen, toggleSideMenu }) => (
   <div className={isOpen ? styles.wrapper__open : styles.wrapper__close}>
     <nav className={isOpen ? styles.menu__open : styles.menu__close}>
       <header className={styles.wrapper__icons}>
@@ -15,7 +15,7 @@ const SideMenu = ({ toggleSideMenuControl: isOpen }) => (
       </header>
       <ul className={styles.wrapper__list}>
         {menuList.map(item => (
-          <SideMenuItem key={item} content={item} />
+          <SideMenuItem key={item} content={item} onClick={toggleSideMenu} />
         ))}
       </ul>
     </nav>
@@ -24,6 +24,7 @@ const SideMenu = ({ toggleSideMenuControl: isOpen }) => (
 
 SideMenu.propTypes = {
   toggleSideMenuControl: PropTypes.bool.isRequired,
+  toggleSideMenu: PropTypes.func.isRequired,
 };
 
 export default SideMenu;
