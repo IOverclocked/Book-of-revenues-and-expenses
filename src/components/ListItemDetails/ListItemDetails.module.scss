@@ -5,6 +5,10 @@
   padding: 0.5em;
   font-size: 1em;
   color: $primaryFontColor;
+
+  &:not(:last-child) {
+    border-bottom: 2px solid $little20AlfaShadowColor;
+  }
 }
 
 .wrapper__expenses {
