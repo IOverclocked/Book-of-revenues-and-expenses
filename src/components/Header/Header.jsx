@@ -12,7 +12,7 @@ const Header = ({ toggleSideMenuControl, toggleSideMenu, isStartView }) => {
     <header className={styles.wrapper}>
       <Logo isStartView={isStartView} />
       <Hamburger toggleSideMenuControl={toggleSideMenuControl} onClick={toggleSideMenu} />
-      <SideMenu toggleSideMenuControl={toggleSideMenuControl} />
+      <SideMenu toggleSideMenuControl={toggleSideMenuControl} toggleSideMenu={toggleSideMenu} />
     </header>
   );
 };
