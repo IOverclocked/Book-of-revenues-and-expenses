@@ -37,6 +37,7 @@ class DetailsView extends Component {
   render() {
     const { result, expenses, revenues } = this.props;
     const { listExpenses, listRevenues } = this.state;
+
     return (
       <div className={styles.wrapper}>
         <Header />
@@ -50,7 +51,7 @@ class DetailsView extends Component {
   }
 }
 
-const mapStateToProps = ({ list, result, expenses, revenues }) => ({
+const mapStateToProps = ({ main: { list, result, expenses, revenues } }) => ({
   list,
   result,
   expenses,

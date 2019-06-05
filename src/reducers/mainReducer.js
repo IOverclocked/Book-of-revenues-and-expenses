@@ -32,7 +32,7 @@ const update = list => {
   });
   return {
     list,
-    result: decimalTwoPrecision(result).toString(),
+    result: Math.round(result).toString(),
     expenses: decimalTwoPrecision(expenses).toString(),
     revenues: decimalTwoPrecision(revenues).toString(),
   };
@@ -51,10 +51,10 @@ const main = (state = initState, action) => {
       localStorage.setItem('Main', JSON.stringify(add(state, action)));
       return add(state, action);
     case 'DEL':
-      // localStorage.setItem('Main', JSON.stringify(del(state, action)));
+      localStorage.setItem('Main', JSON.stringify(del(state, action)));
       return del(state, action);
     case 'EDIT':
-      // localStorage.setItem('Main', JSON.stringify(del(state, action)));
+      localStorage.setItem('Main', JSON.stringify(del(state, action)));
       return edit(state, action);
     default:
       return state;
