@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Formik, ErrorMessage, Field } from 'formik';
+import { Formik, ErrorMessage, Field, Form as FormikForm } from 'formik';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import {
@@ -90,8 +90,13 @@ class Form extends Component {
     const errors = {};
     const cashReg = /^\$?(\d{1,7})(\.\d{1,2})?$/;
 
-    errors.title = !title ? 'This field is required' : '';
-    errors.desc = !desc ? 'This field is required' : '';
+    if (!title) {
+      errors.title = 'This field is required';
+    }
+
+    if (!desc) {
+      errors.desc = 'This field is required';
+    }
 
     if (!cash) {
       errors.cash = 'This field is required';
@@ -109,12 +114,11 @@ class Form extends Component {
       <div className={styles.wrapper}>
         <Formik
           initialValues={initData || { title: '', date: '', cash: '', desc: '', er: '' }}
-          // validate={values => this.validate(values)}
-          // todo jutro zrobić walidację
+          validate={values => this.validate(values)}
           onSubmit={values => this.submit(values)}
         >
           {({ values, handleChange, handleBlur, handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
+            <FormikForm onSubmit={handleSubmit}>
               <Input
                 name="title"
                 label="Title"
@@ -123,7 +127,7 @@ class Form extends Component {
                 onBlur={handleBlur}
                 value={values.title}
               />
-              <ErrorMessage name="title" component="div" />
+              <ErrorMessage className={styles.feedback} name="title" component="div" />
               <Input
                 name="date"
                 label="Date"
@@ -138,7 +142,7 @@ class Form extends Component {
                 onBlur={handleBlur}
                 value={values.cash}
               />
-              <ErrorMessage name="cash" component="div" />
+              <ErrorMessage className={styles.feedback} name="cash" component="div" />
               <Input
                 tag="textarea"
                 name="desc"
@@ -148,7 +152,7 @@ class Form extends Component {
                 onBlur={handleBlur}
                 value={values.desc}
               />
-              <ErrorMessage name="textarea" component="div" />
+              <ErrorMessage className={styles.feedback} name="desc" component="div" />
 
               <div className={styles.radios}>
                 <Field
@@ -168,12 +172,13 @@ class Form extends Component {
                   component={Radio}
                 />
               </div>
+
               <div className={styles.btns}>
                 {btns.map(btn => (
                   <NavButton type="submit" key={btn.title} title={btn.title} />
                 ))}
               </div>
-            </form>
+            </FormikForm>
           )}
         </Formik>
       </div>
