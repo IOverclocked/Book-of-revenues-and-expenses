@@ -4,20 +4,20 @@
   border: 2px solid map-get($color, '1');
   background: map-get($color, '45');
   color: $primaryFontColor;
-  padding: 0.5em;
   width: 100%;
   // height: ;
 }
 
-.expenses {
+.wrapper__expenses {
   @include wrapper($expensesColors);
 }
 
-.revenues {
+.wrapper__revenues {
   @include wrapper($revenuesColors);
 }
 
 .header {
+  padding: 0.5em;
   text-align: center;
   .title {
     padding: 0;

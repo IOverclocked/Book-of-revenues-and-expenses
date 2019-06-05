@@ -1,0 +1,33 @@
+@import '../../styles/imports.scss';
+
+.wrapper {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 1em;
+  color: $primaryFontColor;
+
+  &:not(:last-child) {
+    border-bottom: 2px solid $little20AlfaShadowColor;
+  }
+}
+
+.wrapper__expenses {
+  @extend .wrapper;
+  background-color: map-get($expensesColors, '95');
+}
+
+.wrapper__revenues {
+  @extend .wrapper;
+  background-color: map-get($revenuesColors, '95');
+}
+
+.header {
+  @include flex(center, space-between);
+}
+
+.cash {
+  padding: 0.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  @include flex(center, center);
+}
