@@ -7,7 +7,7 @@
   right: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 99998;
   transition: transform 150ms ease-in-out;
 }
 
@@ -68,7 +68,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 99999;
   transition: transform 1000ms ease-in-out;
   background: $primaryColor;
   box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
