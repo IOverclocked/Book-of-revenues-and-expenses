@@ -1,4 +1,4 @@
-@import '../../styles/imports.scss';
+@import "../../styles/imports.scss";
 
 .wrapper {
   position: fixed;
@@ -11,8 +11,15 @@
   transition: transform 150ms ease-in-out;
 }
 
-.wrapper__icons {
-  position: relative;
+.open {
+  @extend .wrapper;
+  transform: translateX(0);
+  background-color: $little20AlfaShadowColor;
+}
+
+.close {
+  @extend .wrapper;
+  transform: translateX(100vw);
 }
 
 .icon {
@@ -28,63 +35,61 @@
   }
 }
 
-.icon__close {
-  @extend .icon;
-  visibility: hidden;
-  &:first-child {
-    transform: rotate(100deg);
+.close,
+.open {
+  &__header {
+    position: relative;
   }
-  &:last-child {
-    transform: rotate(0deg);
+
+  &__nav {
+    width: 50vw;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
+    transition: transform 1000ms ease-in-out;
+    background: $primaryColor;
+    box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
+  }
+
+  &__list {
+    margin: 6em 0 0 0;
+    list-style-type: none;
   }
 }
 
-.icon__open {
-  @extend .icon;
-  font-size: 5em !important;
-  visibility: visible;
-  &:first-child {
-    transform: rotate(-10deg);
+.open {
+  &__nav {
+    transform: translateX(0);
   }
-  &:last-child {
-    transform: rotate(30deg);
+  
+  &__icon {
+    @extend .icon;
+    font-size: 5em !important;
+    visibility: visible;
+    &:first-child {
+      transform: rotate(-10deg);
+    }
+    &:last-child {
+      transform: rotate(30deg);
+    }
   }
 }
 
-.wrapper__open {
-  @extend .wrapper;
-  transform: translateX(0);
-  background-color: $little20AlfaShadowColor;
-}
+.close {
+  &__nav {
+    transform: translateX(50vw);
+  }
 
-.wrapper__close {
-  @extend .wrapper;
-  transform: translateX(100vw);
-}
-
-.menu {
-  width: 50vw;
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 99999;
-  transition: transform 1000ms ease-in-out;
-  background: $primaryColor;
-  box-shadow: -2px 0 10px 10px $little20AlfaShadowColor;
-}
-
-.menu__open {
-  @extend .menu;
-  transform: translateX(0);
-}
-
-.menu__close {
-  @extend .menu;
-  transform: translateX(50vw);
-}
-
-.wrapper__list {
-  margin: 6em 0 0 0;
-  list-style-type: none;
+  &__icon {
+    @extend .icon;
+    visibility: hidden;
+    &:first-child {
+      transform: rotate(100deg);
+    }
+    &:last-child {
+      transform: rotate(0deg);
+    }
+  }
 }

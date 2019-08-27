@@ -1,6 +1,6 @@
 @import '../../styles/imports.scss';
 
-.wrapper {
+.button {
   @include flex(center, center);
   position: fixed;
   bottom: 20px;
@@ -16,7 +16,7 @@
   transition: 150ms ease-in-out;
   cursor: pointer;
 
-  .icon {
+  &__icon {
     font-size: 40px;
   }
 

@@ -26,7 +26,7 @@
 }
 
 //types nav buttons
-.wrapper__revenues {
+.wrapper_revenues {
   @extend .navButton;
   border-color: map-get($revenuesColors, '1');
 
@@ -37,7 +37,7 @@
   }
 }
 
-.wrapper__expenses {
+.wrapper_expenses {
   @extend .navButton;
   border-color: map-get($expensesColors, '1');
 

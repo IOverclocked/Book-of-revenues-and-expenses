@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Radio.module.scss';
 
 const setCircleInClassName = name =>
-  name === 'expenses' ? styles.circle__expenses : styles.circle__revenues;
+  name === 'expenses' ? styles.circle_expenses : styles.circle_revenues;
 
 const Radio = ({ field: { name, value, onChange, onBlur }, id, label, ...props }) => (
   <label className={styles.wrapper} htmlFor={id}>
@@ -18,7 +18,7 @@ const Radio = ({ field: { name, value, onChange, onBlur }, id, label, ...props }
       className={styles.input}
       {...props}
     />
-    <div className={styles.circle__out}>
+    <div className={styles.circle_out}>
       <div className={setCircleInClassName(id)} />
     </div>
     <span className={styles.label}>&nbsp;{label}</span>

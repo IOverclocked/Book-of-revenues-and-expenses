@@ -1,4 +1,4 @@
-@import '../../styles/imports.scss';
+@import "../../styles/imports.scss";
 
 .wrapper {
   @include flex(center, space-between);
@@ -15,32 +15,32 @@
 
 .expenses {
   @extend .wrapper;
-  background-color: map-get($expensesColors, '65');
+  background-color: map-get($expensesColors, "65");
 }
 
 .revenues {
   @extend .wrapper;
-  background-color: map-get($revenuesColors, '65');
+  background-color: map-get($revenuesColors, "65");
 }
 
 @mixin open($color) {
   z-index: 9999;
-  background-color: map-get($color, '1');
+  background-color: map-get($color, "1");
   color: $whiteColor;
   transform: translateY(30px);
 }
 
-.expenses__open {
+.expenses_open {
   @extend .expenses;
   @include open($expensesColors);
 }
 
-.revenues__open {
+.revenues_open {
   @extend .revenues;
   @include open($revenuesColors);
 }
 
-.section__nav {
+.section_nav {
   @include flex(center, flex-start);
   position: absolute;
   left: 0;
@@ -49,44 +49,42 @@
   transition: transform 150ms ease-in-out;
 }
 
-.nav__open {
-  @extend .section__nav;
+.nav_open {
+  @extend .section_nav;
   visibility: visible;
   transform: translateX(0px);
 }
 
-.nav__close {
-  @extend .section__nav;
+.nav_close {
+  @extend .section_nav;
   visibility: hidden;
   transform: translateX(-1000px);
 }
 
-.section__desc {
+.section_desc {
   height: 100%;
   max-width: 75vw;
   flex-grow: 4;
   overflow: hidden;
 
-  .desc__header {
+  &__header {
     @include flex(center, space-between);
-
-    .header__date {
-      padding: 0.5em;
-      flex-grow: 1;
-    }
-    .header__title {
-      padding: 0.5em;
-      flex-grow: 4;
-      text-align: center;
-    }
   }
-
-  .desc__desc {
+  &__date {
+    padding: 0.5em;
+    flex-grow: 1;
+  }
+  &__title {
+    padding: 0.5em;
+    flex-grow: 4;
+    text-align: center;
+  }
+  &__desc {
     padding: 0 0.5em;
   }
 }
 
-.section__cash {
+.section_cash {
   @include flex(center, center);
   height: 100%;
   flex-grow: 1;

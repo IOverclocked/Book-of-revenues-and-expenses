@@ -4,7 +4,7 @@ import ListItemDetails from 'components/ListItemDetails/ListItemDetails';
 import styles from './ListDetails.module.scss';
 
 const ListDetails = ({ isExpenses, list }) => (
-  <section className={isExpenses ? styles.wrapper__expenses : styles.wrapper__revenues}>
+  <section className={isExpenses ? styles.wrapper_expenses : styles.wrapper_revenues}>
     <header className={styles.header}>
       <h2 className={styles.title}>{isExpenses ? 'Expenses' : 'Revenues'}</h2>
     </header>

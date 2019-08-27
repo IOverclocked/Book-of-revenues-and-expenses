@@ -22,7 +22,7 @@ const setInputClassName = tag => {
 
 const setWrapperClassName = tag => {
   if (tag === 'textarea') {
-    return styles.textarea__wrapper;
+    return styles.textarea_wrapper;
   }
   return styles.wrapper;
 };

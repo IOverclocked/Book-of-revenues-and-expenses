@@ -5,9 +5,9 @@ import styles from './NavButton.module.scss';
 const NavButton = ({ type, classType, title, ...props }) => {
   let controlClassName;
   if (classType === 'expenses') {
-    controlClassName = styles.wrapper__expenses;
+    controlClassName = styles.wrapper_expenses;
   } else if (classType === 'revenues') {
-    controlClassName = styles.wrapper__revenues;
+    controlClassName = styles.wrapper_revenues;
   } else {
     controlClassName = styles.confirmButton;
   }

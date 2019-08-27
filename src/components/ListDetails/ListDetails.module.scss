@@ -8,11 +8,11 @@
   // height: ;
 }
 
-.wrapper__expenses {
+.wrapper_expenses {
   @include wrapper($expensesColors);
 }
 
-.wrapper__revenues {
+.wrapper_revenues {
   @include wrapper($revenuesColors);
 }
 

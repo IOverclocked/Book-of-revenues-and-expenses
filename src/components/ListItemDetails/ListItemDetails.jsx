@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ListItemDetails.module.scss';
 
 const ListItemDetails = ({ title, date, cash, isExpenses }) => (
-  <li className={isExpenses ? styles.wrapper__expenses : styles.wrapper__revenues}>
+  <li className={isExpenses ? styles.wrapper_expenses : styles.wrapper_revenues}>
     <div className={styles.header}>
       <span>{title}</span>
       <span>{date}</span>

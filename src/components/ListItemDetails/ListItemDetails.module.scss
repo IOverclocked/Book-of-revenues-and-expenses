@@ -11,12 +11,12 @@
   }
 }
 
-.wrapper__expenses {
+.wrapper_expenses {
   @extend .wrapper;
   background-color: map-get($expensesColors, '95');
 }
 
-.wrapper__revenues {
+.wrapper_revenues {
   @extend .wrapper;
   background-color: map-get($revenuesColors, '95');
 }

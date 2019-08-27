@@ -1,4 +1,4 @@
-@import '../../styles/imports.scss';
+@import "../../styles/imports.scss";
 
 //abstract class
 .wrapper {
@@ -10,7 +10,7 @@
   height: 50px;
   font-family: $primatyHeaderFont;
 }
-.middleWrapper {
+.middle_wrapper {
   position: relative;
 }
 .icon {
@@ -21,79 +21,70 @@
   font-style: italic;
   font-family: $primaryHeaderSecondFont;
 }
-.internalWrapper {
+.internal_wrapper {
   position: absolute;
   font-family: $primaryHeaderThirdFont;
 }
 
 //by start view
-.wrapper__start {
+.wrapper_start {
   @extend .wrapper;
   padding: 1em 0 0 1em;
-}
-
-.book__start {
-  @extend .book;
-  font-size: 55px;
-}
-
-.middleWrapper__start {
-  @extend .middleWrapper;
-  height: 70px;
-  .icon__start {
-    @extend .icon;
-    transform: rotate(-15deg);
-    top: -7.5px;
-    left: -15px;
-    font-size: 5em;
+  .book {
+    font-size: 55px;
   }
-  .of__start {
-    @extend .of;
-    left: 40px;
-    font-size: 47px;
-  }
-  .internalWrapper__start {
-    @extend .internalWrapper;
-    left: 45px;
-    bottom: 5px;
-    display: flex;
-    font-size: 21px;
+
+  .middle_wrapper {
+    height: 70px;
+    .icon {
+      transform: rotate(-15deg);
+      top: -7.5px;
+      left: -15px;
+      font-size: 5em;
+    }
+    .of {
+      left: 40px;
+      font-size: 47px;
+    }
+    .internal_wrapper {
+      left: 45px;
+      bottom: 5px;
+      display: flex;
+      font-size: 21px;
+    }
   }
 }
 
 //by home view
-.wrapper__home {
+.wrapper_home {
   @extend .wrapper;
   padding: 1em 0 0 1em;
 
-  .book__home {
-    @extend .book;
+  .book {
     font-size: 42px;
   }
-  .iconRight__home,
-  .iconLeft__home {
+  .iconRight,
+  .iconLeft {
     @extend .icon;
   }
-  .iconLeft__home {
+  .iconLeft {
     font-size: 35px;
     top: 0px;
     left: 40px;
     transform: rotate(-20deg);
   }
-  .iconRight__home {
+  .iconRight {
     font-size: 30px;
     top: 5px;
     left: 55px;
     transform: rotate(20deg);
   }
-  .of__home {
-    @extend .of;
+  .of {
     top: 25px;
     left: 125px;
     font-size: 17px;
   }
-  .internalWrapper__home {
-    @extend .internalWrapper;
+  .internal_wrapper {
     position: absolute;
     display: flex;
     top: 37px;

@@ -8,8 +8,8 @@ import MoreView from 'views/MoreView/MoreView';
 import styles from './Modal.module.scss';
 
 const Modal = ({ headerTitle, toggleModal, handleDel, details, btns }) => (
-  <div className={styles.modal__wrapper}>
-    <section className={styles.wrapper}>
+  <div className={styles.modal}>
+    <section className={styles.modal__section}>
       <ModalHeader title={headerTitle} toggleModal={toggleModal} />
       {headerTitle !== 'More' ? (
         <Form />
